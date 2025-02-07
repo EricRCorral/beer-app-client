@@ -1,45 +1,40 @@
-import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {
+  Home,
+  AboutUs,
+  Account,
+  Cart,
+  Checkout,
+  Contact,
+  History,
+  Product,
+  Production,
+  Store,
+  WishList,
+  Session,
+  NotFound,
+} from "./pages";
 
-function App() {
-  const [count, setCount] = useState(0);
-
-  const getData = async () => {
-    const DATA = await (await fetch("http://localhost:3000")).json();
-
-    console.log(DATA);
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  );
-}
+const App = () => (
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="session" element={<Session />} />
+      <Route path="about-us" element={<AboutUs />} />
+      <Route path="production" element={<Production />} />
+      <Route path="contact" element={<Contact />} />
+      <Route path="cart" element={<Cart />} />
+      <Route path="checkout" element={<Checkout />} />
+      <Route path="account" element={<Account />}>
+        <Route path="history" element={<History />} />
+        <Route path="wish-list" element={<WishList />} />
+      </Route>
+      <Route path="store" element={<Store />}>
+        <Route path="product/:id" element={<Product />} />
+      </Route>
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  </BrowserRouter>
+);
 
 export default App;
