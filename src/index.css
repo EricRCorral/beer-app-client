@@ -9,7 +9,7 @@
 
 body {
   margin: 0px;
-  background-color: var(--color-5);
+  background: linear-gradient(var(--color-4), var(--color-5));
   color: var(--color-6);
   font-family: "Pirata One", serif;
   font-size: 20px;

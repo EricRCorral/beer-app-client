@@ -1,0 +1,69 @@
+.about-us {
+  margin-bottom: 3vh;
+  .parallax {
+    height: 100vh;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    .text {
+      margin: 0 5%;
+      width: 300px;
+    }
+    h1 {
+      color: var(--color-1);
+      font-size: 60px;
+      text-shadow: 1px 1px 1px var(--color-5);
+    }
+    &.couple {
+      background-image: url("../../assets/img/couple.jpg");
+    }
+    &.group {
+      background-image: url("../../assets/img/group.jpg");
+    }
+  }
+
+  .separator {
+    width: 90%;
+    margin: 10px auto;
+    border-top: 2px dotted var(--color-2);
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .about-us {
+    margin-bottom: 0;
+    .parallax {
+      flex-direction: column;
+      .text {
+        margin: 0 0 36px;
+        width: 90%;
+      }
+
+      &.couple {
+        padding-top: 85vh;
+      }
+      &.group {
+        padding-top: 70vh;
+      }
+
+      p {
+        background-color: var(--color-5);
+        opacity: 0.9;
+        padding: 5px;
+        border-radius: 10px;
+      }
+      h1 {
+        order: -1;
+      }
+    }
+    .separator {
+      width: 100%;
+      margin: 20px auto;
+    }
+  }
+}

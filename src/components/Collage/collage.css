@@ -19,7 +19,6 @@
       opacity: 0.7;
     }
     &.active + .info {
-      background-color: var(--color-5);
       object-fit: cover;
       padding: 2px 6px;
       margin: 0px 6px;

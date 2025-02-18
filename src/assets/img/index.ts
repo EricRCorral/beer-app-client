@@ -8,3 +8,5 @@ export { default as CervezaNegra } from "./negra.png";
 export { default as CervezaRubia } from "./rubia.png";
 export { default as CervezaRubia2 } from "./rubia-2.png";
 export { default as CervezaRoja } from "./roja.png";
+export { default as Couple } from "./couple.jpg";
+export { default as Group } from "./group.jpg";
