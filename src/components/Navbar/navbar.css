@@ -1,0 +1,138 @@
+.navbar {
+  .navbar-fixed {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    height: 100px;
+    top: 10px;
+    left: calc(5% - 5px);
+    width: 90%;
+    border-radius: 5px;
+    padding: 0px 25px;
+    z-index: 5;
+    transition: 0.3s ease-in-out;
+    .menu-icon,
+    .close-icon {
+      display: none;
+    }
+    .user-icon {
+      margin-right: 10px;
+    }
+    .cart-icon {
+      margin-left: 10px;
+    }
+    .account-cart-box {
+      order: 1;
+    }
+    a svg {
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      color: var(--color-6);
+      transition: 0.3s ease;
+      &:hover {
+        color: var(--color-1);
+      }
+    }
+  }
+  &.active .navbar-fixed {
+    background: var(--color-6);
+    & a {
+      color: var(--color-5);
+    }
+    & svg {
+      color: var(--color-5);
+    }
+    & img {
+      border: 1px solid var(--color-5);
+    }
+  }
+
+  .navbar-modal {
+    display: none;
+  }
+
+  .page-section {
+    cursor: pointer;
+    h4 {
+      transition: 0.3s ease;
+      margin: 0px;
+      &:hover {
+        transform: scale(1.2);
+        color: var(--color-1);
+      }
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--color-6);
+  }
+
+  img {
+    width: 80px;
+    height: 80px;
+    border: 1px solid var(--color-6);
+    border-radius: 50%;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .navbar-fixed {
+      justify-content: space-between;
+      height: 60px;
+      top: 10px;
+      left: calc(5% - 5px);
+      width: 90%;
+      border-radius: 5px;
+      padding: 5px;
+      .account-cart-box {
+        order: unset;
+      }
+      .page-section {
+        display: none;
+      }
+      .menu-icon {
+        display: block;
+        height: 40px;
+        width: 40px;
+      }
+      img {
+        margin-right: 18px;
+        width: 50px;
+        height: 50px;
+      }
+    }
+    .navbar-modal {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      color: white;
+      width: 100vw;
+      height: 100vh;
+      background-color: var(--color-5);
+
+      .menu-icon,
+      .user-icon,
+      .cart-icon {
+        display: none;
+      }
+      &.hidden {
+        display: none;
+      }
+      .close-icon {
+        position: absolute;
+        top: 5%;
+        right: 5%;
+        color: var(--color-6);
+        height: 40px;
+        width: 40px;
+      }
+    }
+  }
+}

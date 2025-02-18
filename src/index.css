@@ -1,0 +1,23 @@
+/* Dorado Lager #F8D568
+Ámbar Ale #D4914B
+Caramelo Red Ale #A0412C
+Marrón Porter #6B3E26
+Negro Stout #1E1B18
+Espuma Cremosa #EDE0C8 */
+
+:root {
+  --color-1: #f8d568;
+  --color-2: #d4914b;
+  --color-3: #a0412c;
+  --color-4: #6b3e26;
+  --color-5: #1e1b18;
+  --color-6: #ede0c8;
+}
+
+body {
+  margin: 0px;
+  background-color: var(--color-5);
+  color: var(--color-6);
+  font-family: "Pirata One", serif;
+  font-size: 20px;
+}

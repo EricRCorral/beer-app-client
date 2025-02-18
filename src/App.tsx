@@ -14,26 +14,31 @@ import {
   Session,
   NotFound,
 } from "./pages";
+import { Footer, Navbar } from "./components";
+import ChatBox from "./components/Chatbox";
 
 const App = () => (
   <BrowserRouter>
+    <Navbar />
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="session" element={<Session />} />
-      <Route path="about-us" element={<AboutUs />} />
-      <Route path="production" element={<Production />} />
-      <Route path="contact" element={<Contact />} />
-      <Route path="cart" element={<Cart />} />
+      <Route path="sesion" element={<Session />} />
+      <Route path="sobre-nosotros" element={<AboutUs />} />
+      <Route path="produccion" element={<Production />} />
+      <Route path="contacto" element={<Contact />} />
+      <Route path="carrito" element={<Cart />} />
       <Route path="checkout" element={<Checkout />} />
-      <Route path="account" element={<Account />}>
-        <Route path="history" element={<History />} />
-        <Route path="wish-list" element={<WishList />} />
+      <Route path="cuenta" element={<Account />}>
+        <Route path="historial" element={<History />} />
+        <Route path="favoritos" element={<WishList />} />
       </Route>
-      <Route path="store" element={<Store />}>
-        <Route path="product/:id" element={<Product />} />
+      <Route path="tienda" element={<Store />}>
+        <Route path="producto/:id" element={<Product />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
+    <Footer />
+    <ChatBox />
   </BrowserRouter>
 );
 

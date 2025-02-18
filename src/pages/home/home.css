@@ -1,0 +1,81 @@
+.home {
+  video {
+    object-fit: cover;
+    height: 100vh;
+  }
+  h1 {
+    text-align: center;
+    color: var(--color-1);
+  }
+  .sections {
+    & > :nth-child(even) {
+      text-align: right;
+      & .info {
+        margin: 0 0 0 10%;
+      }
+      img {
+        order: 0;
+      }
+    }
+    section {
+      margin: 30px auto;
+      display: flex;
+      justify-items: center;
+      width: 70%;
+      .info {
+        margin: 0 10% 0 0;
+        line-height: 40px;
+        h1 {
+          margin: 0;
+        }
+      }
+      img {
+        width: 50%;
+        order: 1;
+      }
+      .btn {
+        color: var(--color-1);
+        border: 1px solid var(--color-1);
+        &:hover {
+          color: var(--color-5);
+          background-color: var(--color-1);
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    video {
+      height: 90vh;
+    }
+    .sections {
+      > :first-child h1 {
+        margin-top: 5px;
+      }
+      section {
+        flex-wrap: wrap;
+        width: 92%;
+        margin: 0 auto;
+        .info {
+          line-height: normal;
+          margin: 0;
+          h1 {
+            margin-top: 15px;
+          }
+        }
+        img {
+          width: 100%;
+          margin-top: 15px;
+        }
+      }
+      & > :nth-child(even) {
+        .info {
+          margin: 0;
+        }
+        img {
+          order: 1;
+        }
+      }
+    }
+  }
+}

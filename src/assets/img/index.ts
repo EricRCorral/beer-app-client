@@ -1,0 +1,10 @@
+export { default as BeerProduction } from "./beer-production.jpg";
+export { default as Beer } from "./beer.png";
+export { default as GoogleMaps } from "./google-maps.jpg";
+export { default as Us } from "./us.jpg";
+export { default as CervezaIpa } from "./ipa-2.png";
+export { default as CervezaIpa2 } from "./ipa.png";
+export { default as CervezaNegra } from "./negra.png";
+export { default as CervezaRubia } from "./rubia.png";
+export { default as CervezaRubia2 } from "./rubia-2.png";
+export { default as CervezaRoja } from "./roja.png";
