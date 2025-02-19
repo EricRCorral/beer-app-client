@@ -5,6 +5,7 @@ footer {
   flex-wrap: wrap;
   border-top: 2px solid var(--color-6);
   color: var(--color-6);
+  margin-top: 5vh;
   .page-links {
     width: 60%;
     display: none;

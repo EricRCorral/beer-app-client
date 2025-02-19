@@ -1,0 +1,40 @@
+.production {
+  margin: 20vh 10% 0;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+  > :nth-child(1).step,
+  > :nth-child(2).step {
+    width: 30%;
+    margin: 1% 5%;
+  }
+  .step {
+    width: 30%;
+    height: fit-content;
+    margin: 1%;
+    padding: 10px 5px;
+    h2 {
+      color: var(--color-1);
+      text-shadow: 1px 1px 5px var(--color-5);
+    }
+    img {
+      width: 100%;
+      height: fit-content;
+      box-shadow: 0px 0px 15px var(--color-5);
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .production {
+    margin: 15vh 5px 0;
+    > :nth-child(1).step,
+    > :nth-child(2).step {
+      width: 100%;
+    }
+    .step {
+      width: 100%;
+    }
+  }
+}
