@@ -28,7 +28,7 @@ const Wrapper: React.FC<{ children: JSX.Element[] }> = ({ children }) => {
 const App = () => (
   <BrowserRouter>
     <Wrapper>
-      <Navbar />
+      {location.pathname !== "/sesion" ? <Navbar /> : <></>}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="sesion" element={<Session />} />
@@ -46,8 +46,8 @@ const App = () => (
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <Footer />
-      <Chatbox />
+      {location.pathname !== "/sesion" ? <Footer /> : <></>}
+      {location.pathname !== "/sesion" ? <Chatbox /> : <></>}
     </Wrapper>
   </BrowserRouter>
 );
