@@ -25,5 +25,6 @@
     cursor: pointer;
     top: -30px;
     left: 93%;
+    color: var(--color-1);
   }
 }

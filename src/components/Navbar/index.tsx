@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { IoCloseCircleOutline, IoCart, IoMenu } from "react-icons/io5";
 import { FaUser } from "react-icons/fa6";
-import { Link } from "react-router";
 import { Text } from "../";
 import { Beer } from "../../assets/img/";
 import { PAGES } from "../../constants";
+import { Link } from "react-router-dom";
 
 import "./navbar.css";
 

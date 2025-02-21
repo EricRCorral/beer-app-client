@@ -38,8 +38,11 @@
   }
   &.active .navbar-fixed {
     background: var(--color-6);
-    & a {
+    & a h4 {
       color: var(--color-5);
+      &:hover {
+        color: var(--color-1);
+      }
     }
     & svg {
       color: var(--color-5);
@@ -67,7 +70,9 @@
 
   a {
     text-decoration: none;
-    color: var(--color-6);
+    h4 {
+      color: var(--color-6);
+    }
   }
 
   img {

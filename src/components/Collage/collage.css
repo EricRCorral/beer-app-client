@@ -30,9 +30,6 @@
       color: var(--color-6);
       z-index: 4;
       animation: fadeIn 0.5s 0.5s forwards;
-      h3 {
-        color: var(--color-1);
-      }
       > div {
         display: flex;
         justify-content: center;
@@ -45,14 +42,6 @@
         margin-left: 10px;
         color: var(--color-1);
         cursor: pointer;
-      }
-      .btn {
-        color: var(--color-1);
-        border: 1px solid var(--color-1);
-        &:hover {
-          background-color: var(--color-6);
-          color: var(--color-5);
-        }
       }
     }
 

@@ -26,13 +26,7 @@
     }
     .btn {
       width: 100%;
-      color: var(--color-1);
-      border: 1px solid var(--color-1);
       margin: 16px 0 10px;
-      &:hover {
-        color: var(--color-5);
-        background-color: var(--color-1);
-      }
     }
     div:has(small) {
       text-align: center;

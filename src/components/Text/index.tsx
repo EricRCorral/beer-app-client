@@ -1,5 +1,7 @@
 import { createElement } from "react";
 
+import "./text.css";
+
 type TextProps = {
   tag?:
     | "p"

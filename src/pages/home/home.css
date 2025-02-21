@@ -5,7 +5,6 @@
   }
   h1 {
     text-align: center;
-    color: var(--color-1);
   }
   .sections {
     & > :nth-child(even) {
@@ -32,14 +31,6 @@
       img {
         width: 50%;
         order: 1;
-      }
-      .btn {
-        color: var(--color-1);
-        border: 1px solid var(--color-1);
-        &:hover {
-          color: var(--color-5);
-          background-color: var(--color-1);
-        }
       }
     }
   }

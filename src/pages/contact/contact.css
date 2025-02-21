@@ -1,0 +1,57 @@
+.contact {
+  width: 60%;
+  margin: 20vh auto 0;
+  > h3 {
+    text-align: center;
+    margin-bottom: 5vh;
+    color: var(--color-6);
+  }
+  form {
+    > div {
+      display: flex;
+      justify-content: space-between;
+      > div {
+        width: 30%;
+        input {
+          width: 100%;
+        }
+      }
+    }
+    textarea {
+      background-color: transparent;
+      border: 1px solid var(--color-1);
+      border-radius: 10px;
+      padding: 2%;
+      resize: none;
+      outline: none;
+      width: 96%;
+      height: 300px;
+      color: var(--color-6);
+      font-family: "Pirata One", serif;
+      font-size: 20px;
+    }
+    .btn {
+      width: 30%;
+      margin-left: 35%;
+    }
+  }
+  .leaflet-container {
+    margin-top: 5vh;
+    height: 400px;
+    z-index: 4;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .contact {
+    width: 80%;
+    form {
+      > div {
+        display: block;
+        > div {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

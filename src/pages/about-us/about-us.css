@@ -15,8 +15,7 @@
       width: 300px;
     }
     h1 {
-      color: var(--color-1);
-      font-size: 60px;
+        font-size: 60px;
       text-shadow: 1px 1px 1px var(--color-5);
     }
     &.couple {

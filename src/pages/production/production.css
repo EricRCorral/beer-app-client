@@ -15,7 +15,6 @@
     margin: 1%;
     padding: 10px 5px;
     h2 {
-      color: var(--color-1);
       text-shadow: 1px 1px 5px var(--color-5);
     }
     img {
