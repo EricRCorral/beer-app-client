@@ -6,7 +6,7 @@
     position: fixed;
     height: 100px;
     top: 10px;
-    left: calc(5% - 5px);
+    left: calc(5% - 25px);
     width: 90%;
     border-radius: 5px;
     padding: 0px 25px;

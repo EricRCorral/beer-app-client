@@ -8,3 +8,6 @@ export { default as Input } from "./Input";
 export { default as Collage } from "./Collage";
 export { default as Chatbox } from "./Chatbox";
 export { default as Loader } from "./Loader";
+export { default as SelectBar } from "./SelectBar";
+export { default as ProductCard } from "./ProductCard";
+export { default as Error } from "./Error";

@@ -36,7 +36,7 @@ const Collage: React.FC<{
             <Text tag="h3">{title}</Text>
             <Text>{description}</Text>
             <div>
-              <Link to={`/store/product/${id}`}>
+              <Link to={`/tienda/producto/${id}`}>
                 <Button>Ver detalles</Button>
               </Link>
               <FaCartPlus onClick={() => addToCart(id)} />

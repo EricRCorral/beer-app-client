@@ -1,0 +1,90 @@
+.store {
+  min-height: 100vh;
+  padding: 20vh 5% 0;
+  text-align: center;
+  .loader {
+    margin: 20vh auto;
+  }
+  .filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    .select-bar {
+      margin: 10px 5px;
+    }
+  }
+  .no-beers {
+    font-size: 60px;
+    margin-top: 20vh;
+  }
+  .products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+}
+
+.product {
+  min-height: 100vh;
+  margin-top: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: auto;
+    height: 100%;
+  }
+  > div {
+    width: 30%;
+    p {
+      font-size: 24px;
+    }
+    .buttons {
+      display: flex;
+      .btn {
+        margin-right: 10px;
+        display: flex;
+        align-items: center;
+        .cart-icons {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-left: 6px;
+          svg:hover {
+            transition: 0.3s;
+            fill: var(--color-2);
+          }
+        }
+      }
+    }
+  }
+}
+
+.product-loader {
+  min-height: 100vh;
+  .loader {
+    margin-top: 45vh;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .product {
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    > div {
+      width: 90%;
+      padding: 0px 5%;
+
+      h1 {
+        text-align: center;
+      }
+      .buttons {
+        justify-content: space-around;
+        .btn {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}

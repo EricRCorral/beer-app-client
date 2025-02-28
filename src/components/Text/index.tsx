@@ -18,7 +18,9 @@ type TextProps = {
   children?: React.ReactNode;
 } & React.HTMLAttributes<HTMLElement>;
 
-const Text = ({ tag = "p", children, ...props }: TextProps) =>
-  createElement(tag, { className: "text", ...props }, children);
+const Text = ({ tag = "p", children, className, ...props }: TextProps) => {
+  const CLASS = className ? `text ${className}` : `text`;
+  return createElement(tag, { className: CLASS, ...props }, children);
+};
 
 export default Text;

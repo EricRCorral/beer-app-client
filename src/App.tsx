@@ -25,10 +25,12 @@ const Wrapper: React.FC<{ children: JSX.Element[] }> = ({ children }) => {
   return children;
 };
 
+const IS_SESSION_PAGE = location.pathname !== "/sesion";
+
 const App = () => (
   <BrowserRouter>
     <Wrapper>
-      {location.pathname !== "/sesion" ? <Navbar /> : <></>}
+      {IS_SESSION_PAGE ? <Navbar /> : <></>}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="sesion" element={<Session />} />
@@ -41,13 +43,12 @@ const App = () => (
           <Route path="historial" element={<History />} />
           <Route path="favoritos" element={<WishList />} />
         </Route>
-        <Route path="tienda" element={<Store />}>
-          <Route path="producto/:id" element={<Product />} />
-        </Route>
+        <Route path="tienda" element={<Store />} />
+        <Route path="tienda/producto/:id" element={<Product />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {location.pathname !== "/sesion" ? <Footer /> : <></>}
-      {location.pathname !== "/sesion" ? <Chatbox /> : <></>}
+      {IS_SESSION_PAGE ? <Footer /> : <></>}
+      {IS_SESSION_PAGE ? <Chatbox /> : <></>}
     </Wrapper>
   </BrowserRouter>
 );

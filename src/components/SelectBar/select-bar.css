@@ -1,0 +1,19 @@
+.select-bar {
+  display: flex;
+  border: 1px solid var(--color-1);
+  border-radius: 3px;
+  width: fit-content;
+  .option {
+    border-right: 1px solid var(--color-1);
+    padding: 10px 20px;
+    transition: 0.3s ease;
+    cursor: pointer;
+    &:last-of-type {
+      border-right: none;
+    }
+    &.active,
+    &:hover {
+      background-color: var(--color-2);
+    }
+  }
+}

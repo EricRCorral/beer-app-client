@@ -76,8 +76,8 @@ const BEST_SELLERS = [
   },
 ];
 
+// WIP: CREATE THIS FUNCTION
 const addToCart = (id: string | number) => {
-  // WIP: CREATE THIS FUNCTION
   console.log(id);
 };
 

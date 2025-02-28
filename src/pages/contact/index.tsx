@@ -41,7 +41,6 @@ const Contact = () => {
               value={name}
               onChange={({ target }) => handleFormValue("name", target.value)}
             />
-            <Text className="error"></Text>
           </div>
           <div>
             <Text tag="label">Email</Text>
@@ -51,7 +50,6 @@ const Contact = () => {
               value={email}
               onChange={({ target }) => handleFormValue("email", target.value)}
             />
-            <Text className="error"></Text>
           </div>
           <div>
             <Text tag="label">Teléfono</Text>
@@ -60,7 +58,6 @@ const Contact = () => {
               value={phone}
               onChange={({ target }) => handleFormValue("phone", target.value)}
             />
-            <Text className="error"></Text>
           </div>
         </div>
         <Text tag="h2">Mensaje</Text>
@@ -69,7 +66,6 @@ const Contact = () => {
           value={message}
           onChange={({ target }) => handleFormValue("message", target.value)}
         />
-        <Text className="error"></Text>
         <Button>Enviar</Button>
       </form>
       <Text tag="h3">Puedes encontrarnos en San Miguel</Text>
