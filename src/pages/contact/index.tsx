@@ -12,19 +12,30 @@ type Form = {
   message: string;
 };
 
+const INITIAL_FORM_VALUE = {
+  name: "",
+  email: "",
+  phone: "",
+  message: "",
+};
+
 const Contact = () => {
-  const [{ email, message, name, phone }, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
+  const [{ email, message, name, phone }, setForm] =
+    useState(INITIAL_FORM_VALUE);
 
   const handleFormValue = (key: keyof Form, value: string) =>
     setForm((prev) => ({ ...prev, [key]: value }));
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setForm(INITIAL_FORM_VALUE);
+
+    const FEEDBACK = document.getElementById("feedback-message");
+
+    FEEDBACK?.classList.add("sent-message");
+    setTimeout(() => {
+      FEEDBACK?.classList.remove("sent-message");
+    }, 5000);
   };
 
   return (
@@ -55,6 +66,7 @@ const Contact = () => {
             <Text tag="label">Teléfono</Text>
             <Input
               required
+              type="number"
               value={phone}
               onChange={({ target }) => handleFormValue("phone", target.value)}
             />
@@ -63,10 +75,14 @@ const Contact = () => {
         <Text tag="h2">Mensaje</Text>
         <textarea
           required
+          minLength={50}
           value={message}
           onChange={({ target }) => handleFormValue("message", target.value)}
         />
         <Button>Enviar</Button>
+        <Text id="feedback-message" tag="h3">
+          Mensaje enviado correctamente
+        </Text>
       </form>
       <Text tag="h3">Puedes encontrarnos en San Miguel</Text>
       <MapContainer
