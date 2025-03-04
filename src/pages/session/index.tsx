@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Button, Text, Input, Loader } from "../../components";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context";
+import { UserContext } from "../../context";
 
 import "./session.css";
 
@@ -13,7 +13,7 @@ const Session: React.FC<{ loading: boolean }> = ({ loading }) => {
   });
   const [error, setError] = useState("");
 
-  const { auth } = useContext(AuthContext);
+  const { user } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ const Session: React.FC<{ loading: boolean }> = ({ loading }) => {
 
     const data = await (
       await fetch(
-        `http://localhost:3000/auth/${isLogin ? "signin" : "register"}`,
+        `http://localhost:3000/user/${isLogin ? "signin" : "register"}`,
         {
           method: "POST",
           credentials: "include",
@@ -48,8 +48,8 @@ const Session: React.FC<{ loading: boolean }> = ({ loading }) => {
   const handleIsLogin = () => setIsLogin((prev) => !prev);
 
   useEffect(() => {
-    if (auth) navigate("/");
-  }, [auth, navigate]);
+    if (user) navigate("/");
+  }, [user, navigate]);
 
   if (loading)
     return (

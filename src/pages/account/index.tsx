@@ -1,15 +1,15 @@
 import { useContext, useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context";
+import { UserContext } from "../../context";
 
 const Account = () => {
   const navigate = useNavigate();
 
-  const { auth } = useContext(AuthContext);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
-    if (!auth) navigate("/sesion");
-  }, [auth, navigate]);
+    if (!user) navigate("/sesion");
+  }, [user, navigate]);
 
   return (
     <div>

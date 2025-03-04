@@ -17,8 +17,8 @@ import {
 } from "./pages";
 import { Footer, Navbar, Chatbox } from "./components";
 import useFetch from "./hooks/useFetch";
-import { Auth } from "./types/Auth";
-import { AuthContext } from "./context";
+import { User } from "./types/User";
+import { UserContext } from "./context";
 
 const Wrapper: React.FC<{ children: JSX.Element[] }> = ({ children }) => {
   const location = useLocation();
@@ -29,19 +29,19 @@ const Wrapper: React.FC<{ children: JSX.Element[] }> = ({ children }) => {
 };
 
 const App = () => {
-  const { data: session, loading } = useFetch<Auth>(
-    "http://localhost:3000/auth/session",
+  const { data: session, loading } = useFetch<User>(
+    "http://localhost:3000/user/session",
     {
       credentials: "include",
     }
   );
 
-  const { setAuth } = useContext(AuthContext);
+  const { setUser } = useContext(UserContext);
 
   useEffect(() => {
     if (!loading && session)
-      setAuth({ id: session.id, username: session.username });
-  }, [session, loading, setAuth]);
+      setUser({ id: session.id, username: session.username });
+  }, [session, loading, setUser]);
 
   return (
     <BrowserRouter>
