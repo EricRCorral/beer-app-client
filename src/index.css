@@ -13,4 +13,5 @@ body {
   color: var(--color-6);
   font-family: "Pirata One", serif;
   font-size: 20px;
+  text-shadow: 2px 2px 3px var(--color-5);
 }

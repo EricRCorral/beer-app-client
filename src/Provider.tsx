@@ -1,12 +1,12 @@
 import { ReactElement } from "react";
 import { CartProvider } from "./context/Cart";
-import { UserProvider } from "./context/User";
+import { AuthProvider } from "./context/Auth";
 
 const AppProvider: React.FC<{ children: ReactElement }> = ({ children }) => {
   return (
-    <UserProvider>
+    <AuthProvider>
       <CartProvider>{children}</CartProvider>
-    </UserProvider>
+    </AuthProvider>
   );
 };
 

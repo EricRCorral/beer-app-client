@@ -81,28 +81,26 @@ const addToCart = (id: string | number) => {
   console.log(id);
 };
 
-const Home = () => {
-  return (
-    <div className="home">
-      <video id="myVideo" src={BeerVideo} width="100%" muted autoPlay loop />
-      <div className="sections">
-        {SECTIONS.map(({ img, text, title, url }) => (
-          <section key={title}>
-            <img src={img} alt="Img" />
-            <div className="info">
-              <Text tag="h1">{title}</Text>
-              <Text>{text}</Text>
-              <Link to={url}>
-                <Button>Ver mas</Button>
-              </Link>
-            </div>
-          </section>
-        ))}
-      </div>
-      <Text tag="h1">Mas vendidas</Text>
-      <Collage items={BEST_SELLERS} addToCart={addToCart} />
+const Home = () => (
+  <div className="home">
+    <video id="myVideo" src={BeerVideo} width="100%" muted autoPlay loop />
+    <div className="sections">
+      {SECTIONS.map(({ img, text, title, url }) => (
+        <section key={title}>
+          <img src={img} alt="Img" />
+          <div className="info">
+            <Text tag="h1">{title}</Text>
+            <Text>{text}</Text>
+            <Link to={url}>
+              <Button>Ver mas</Button>
+            </Link>
+          </div>
+        </section>
+      ))}
     </div>
-  );
-};
+    <Text tag="h1">Mas vendidas</Text>
+    <Collage items={BEST_SELLERS} addToCart={addToCart} />
+  </div>
+);
 
 export default Home;

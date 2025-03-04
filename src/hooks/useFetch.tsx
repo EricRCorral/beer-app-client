@@ -29,7 +29,8 @@ const useFetch = <T,>(url: string, options?: RequestInit) => {
     } finally {
       setLoading(false);
     }
-  }, [url, options]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [url]);
 
   useEffect(() => {
     fetchData();

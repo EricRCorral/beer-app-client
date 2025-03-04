@@ -4,12 +4,14 @@ import { FaUser } from "react-icons/fa6";
 import { Text } from "../";
 import { Beer } from "../../assets/img/";
 import { PAGES } from "../../constants";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import "./navbar.css";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const { pathname } = useLocation();
 
   const Content = () => (
     <>
@@ -47,6 +49,8 @@ const Navbar = () => {
     window.addEventListener("scroll", setNavbarBackground);
     return () => removeEventListener("scroll", setNavbarBackground);
   }, []);
+
+  if (pathname === "/sesion") return <></>;
 
   return (
     <nav className="navbar">

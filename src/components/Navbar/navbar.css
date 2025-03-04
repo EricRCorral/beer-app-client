@@ -38,6 +38,7 @@
   }
   &.active .navbar-fixed {
     background: var(--color-6);
+    text-shadow: none;
     & a h4 {
       color: var(--color-5);
       &:hover {

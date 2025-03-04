@@ -8,7 +8,8 @@
     border-radius: 20px;
     .error {
       color: var(--color-3);
-      height: 21px;
+      min-height: 21px;
+      max-width: fit-content;
       font-size: 16px;
       margin: 0;
       &:nth-of-type(1) {
@@ -23,10 +24,14 @@
     label {
       width: 100%;
       margin: 5px 0;
+      &:nth-of-type(2) {
+        display: block;
+        margin-top: 24px;
+      }
     }
     .btn {
       width: 100%;
-      margin: 16px 0 10px;
+      margin: 30px 0 10px;
     }
     div:has(small) {
       text-align: center;
@@ -34,5 +39,12 @@
         cursor: pointer;
       }
     }
+  }
+}
+
+.session-loader {
+  height: calc(100vh - 21px);
+  .loader {
+    margin-top: 45vh;
   }
 }

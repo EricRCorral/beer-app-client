@@ -1,4 +1,4 @@
-import { useLayoutEffect } from "react";
+import { useContext, useEffect, useLayoutEffect } from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import {
   Home,
@@ -16,6 +16,9 @@ import {
   NotFound,
 } from "./pages";
 import { Footer, Navbar, Chatbox } from "./components";
+import useFetch from "./hooks/useFetch";
+import { Auth } from "./types/Auth";
+import { AuthContext } from "./context";
 
 const Wrapper: React.FC<{ children: JSX.Element[] }> = ({ children }) => {
   const location = useLocation();
@@ -25,32 +28,46 @@ const Wrapper: React.FC<{ children: JSX.Element[] }> = ({ children }) => {
   return children;
 };
 
-const IS_SESSION_PAGE = location.pathname !== "/sesion";
+const App = () => {
+  const { data: session, loading } = useFetch<Auth>(
+    "http://localhost:3000/auth/session",
+    {
+      credentials: "include",
+    }
+  );
 
-const App = () => (
-  <BrowserRouter>
-    <Wrapper>
-      {IS_SESSION_PAGE ? <Navbar /> : <></>}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="sesion" element={<Session />} />
-        <Route path="sobre-nosotros" element={<AboutUs />} />
-        <Route path="produccion" element={<Production />} />
-        <Route path="contacto" element={<Contact />} />
-        <Route path="carrito" element={<Cart />} />
-        <Route path="checkout" element={<Checkout />} />
-        <Route path="cuenta" element={<Account />}>
-          <Route path="historial" element={<History />} />
-          <Route path="favoritos" element={<WishList />} />
-        </Route>
-        <Route path="tienda" element={<Store />} />
-        <Route path="tienda/producto/:id" element={<Product />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      {IS_SESSION_PAGE ? <Footer /> : <></>}
-      {IS_SESSION_PAGE ? <Chatbox /> : <></>}
-    </Wrapper>
-  </BrowserRouter>
-);
+  const { setAuth } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (!loading && session)
+      setAuth({ id: session.id, username: session.username });
+  }, [session, loading, setAuth]);
+
+  return (
+    <BrowserRouter>
+      <Wrapper>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="sesion" element={<Session loading={loading} />} />
+          <Route path="sobre-nosotros" element={<AboutUs />} />
+          <Route path="produccion" element={<Production />} />
+          <Route path="contacto" element={<Contact />} />
+          <Route path="carrito" element={<Cart />} />
+          <Route path="checkout" element={<Checkout />} />
+          <Route path="cuenta" element={<Account />}>
+            <Route path="historial" element={<History />} />
+            <Route path="favoritos" element={<WishList />} />
+          </Route>
+          <Route path="tienda" element={<Store />} />
+          <Route path="tienda/producto/:id" element={<Product />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <Footer />
+        <Chatbox />
+      </Wrapper>
+    </BrowserRouter>
+  );
+};
 
 export default App;
