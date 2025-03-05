@@ -14,8 +14,6 @@ interface ProductCardProps {
   color: Color;
   price: number;
   name: string;
-  isFav: boolean;
-  setFavs: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -24,10 +22,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
   image,
   price,
   name,
-  isFav,
-  setFavs,
 }) => {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
+
+  const IS_FAV = user?.favs?.includes(id);
 
   const navigate = useNavigate();
 
@@ -43,16 +41,20 @@ const ProductCard: React.FC<ProductCardProps> = ({
     }
 
     const resp = await fetch("http://localhost:3000/wishlist", {
-      method: isFav ? "DELETE" : "POST",
+      method: IS_FAV ? "DELETE" : "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId: user?.id, beerId: id }),
     });
 
     if (resp.status === 204)
-      setFavs((prev) => {
-        if (isFav) return prev.filter((currentId) => currentId !== id);
-        return [...prev, id];
-      });
+      setUser(
+        IS_FAV
+          ? {
+              ...user,
+              favs: user.favs.filter((currentId) => currentId !== id),
+            }
+          : { ...user, favs: [...user.favs, id] }
+      );
   };
 
   // WIP: CREATE CART FUNCTIONS
@@ -69,7 +71,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
   return (
     <div key={id} className="product-card" onClick={() => handleNavigate(id)}>
-      {isFav ? (
+      {IS_FAV ? (
         <BsHeartFill onClick={(e) => handleFavorite(e, id)} className="fav" />
       ) : (
         <BsHeart onClick={(e) => handleFavorite(e, id)} className="fav" />

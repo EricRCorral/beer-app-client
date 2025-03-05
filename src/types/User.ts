@@ -1,6 +1,7 @@
 export type User = {
   id: string;
   username: string;
+  favs: number[]
 } | null;
 
 export type UserContextType = {
