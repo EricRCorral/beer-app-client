@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { UserContext } from "../../context";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { FaCartPlus } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +14,8 @@ interface ProductCardProps {
   color: Color;
   price: number;
   name: string;
+  isFav: boolean;
+  setFavs: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -20,18 +24,38 @@ const ProductCard: React.FC<ProductCardProps> = ({
   image,
   price,
   name,
+  isFav,
+  setFavs,
 }) => {
-  // WIP
-  const IS_FAV = false;
-  const handleFavorite = (
+  const { user } = useContext(UserContext);
+
+  const navigate = useNavigate();
+
+  const handleFavorite = async (
     e: React.MouseEvent<SVGElement, MouseEvent>,
     id: number
   ) => {
     e.stopPropagation();
-    console.log(id);
+
+    if (!user) {
+      navigate("/sesion");
+      return;
+    }
+
+    const resp = await fetch("http://localhost:3000/wishlist", {
+      method: isFav ? "DELETE" : "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId: user?.id, beerId: id }),
+    });
+
+    if (resp.status === 204)
+      setFavs((prev) => {
+        if (isFav) return prev.filter((currentId) => currentId !== id);
+        return [...prev, id];
+      });
   };
 
-  // WIP: CREATE THIS FUNCTION
+  // WIP: CREATE CART FUNCTIONS
   const addToCart = (
     e: React.MouseEvent<SVGElement, MouseEvent>,
     id: number
@@ -39,14 +63,13 @@ const ProductCard: React.FC<ProductCardProps> = ({
     e.stopPropagation();
     console.log(id);
   };
-
-  const navigate = useNavigate();
+  /////////////////////////////
 
   const handleNavigate = (id: number) => navigate(`producto/${id}`);
 
   return (
     <div key={id} className="product-card" onClick={() => handleNavigate(id)}>
-      {IS_FAV ? (
+      {isFav ? (
         <BsHeartFill onClick={(e) => handleFavorite(e, id)} className="fav" />
       ) : (
         <BsHeart onClick={(e) => handleFavorite(e, id)} className="fav" />

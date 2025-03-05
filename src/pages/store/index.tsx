@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Beer, Color, Density } from "../../types/Beer";
 import { Error, Loader, ProductCard, SelectBar, Text } from "../../components";
 import useFetch from "../../hooks/useFetch";
 
 import "./store.css";
+import { UserContext } from "../../context";
 
 const COLORS: Color[] = ["Rubia", "Roja", "Negra"];
 const DENSITIES: Density[] = ["Ligero", "Medio", "Alto"];
@@ -12,6 +13,20 @@ const Store = () => {
   const { data, loading, error } = useFetch<
     Omit<Beer, "description" | "abv" | "ibu">[]
   >("http://localhost:3000/beers");
+
+  const [favs, setFavs] = useState<number[]>([]);
+
+  const { user } = useContext(UserContext);
+
+  const getFavs = async () => {
+    if (!user) return;
+
+    const FAVS = await (
+      await fetch(`http://localhost:3000/wishlist/${user?.id}`)
+    ).json();
+
+    setFavs(FAVS);
+  };
 
   const [beers, setBeers] = useState<
     Omit<Beer, "description" | "abv" | "ibu">[]
@@ -42,6 +57,11 @@ const Store = () => {
       );
   }, [data, color, density]);
 
+  useEffect(() => {
+    getFavs();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
+
   if (error) return <Error message={error} />;
 
   return (
@@ -69,7 +89,12 @@ const Store = () => {
       {beers.length > 0 && (
         <div className="products">
           {beers.map((beer) => (
-            <ProductCard key={beer.id} {...beer} />
+            <ProductCard
+              key={beer.id}
+              {...beer}
+              isFav={favs.includes(beer.id)}
+              setFavs={setFavs}
+            />
           ))}
         </div>
       )}
