@@ -1,10 +1,9 @@
-import { useContext, useEffect, useLayoutEffect } from "react";
+import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import {
   Home,
   AboutUs,
   Account,
-  Cart,
   Checkout,
   Contact,
   History,
@@ -16,9 +15,9 @@ import {
   NotFound,
 } from "./pages";
 import { Footer, Navbar, Chatbox } from "./components";
-import useFetch from "./hooks/useFetch";
 import { User } from "./types/User";
 import { UserContext } from "./context";
+import useFetch from "./hooks/useFetch";
 
 const Wrapper: React.FC<{ children: JSX.Element[] }> = ({ children }) => {
   const location = useLocation();
@@ -36,24 +35,31 @@ const App = () => {
     }
   );
 
+  const [cartHidden, setCartHidden] = useState(true);
+
+  const handleCartVisibility = () => setCartHidden((prev) => !prev);
+
   const { setUser } = useContext(UserContext);
 
   useEffect(() => {
-    if (!loading && session)
-      setUser({ id: session.id, username: session.username });
+    if (!loading && session) {
+      setUser({ id: session.id, username: session.username, favs: [] });
+    }
   }, [session, loading, setUser]);
 
   return (
     <BrowserRouter>
       <Wrapper>
-        <Navbar />
+        <Navbar
+          hidden={cartHidden}
+          handleCartVisibility={handleCartVisibility}
+        />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="sesion" element={<Session loading={loading} />} />
           <Route path="sobre-nosotros" element={<AboutUs />} />
           <Route path="produccion" element={<Production />} />
           <Route path="contacto" element={<Contact />} />
-          <Route path="carrito" element={<Cart />} />
           <Route path="checkout" element={<Checkout />} />
           <Route path="cuenta" element={<Account />}>
             <Route path="historial" element={<History />} />
@@ -65,6 +71,7 @@ const App = () => {
         </Routes>
         <Footer />
         <Chatbox />
+        <div className="background-overlay" onClick={handleCartVisibility} />
       </Wrapper>
     </BrowserRouter>
   );

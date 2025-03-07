@@ -11,3 +11,4 @@ export { default as Loader } from "./Loader";
 export { default as SelectBar } from "./SelectBar";
 export { default as ProductCard } from "./ProductCard";
 export { default as Error } from "./Error";
+export { default as Cart } from "./Cart";

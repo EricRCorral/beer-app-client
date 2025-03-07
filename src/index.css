@@ -14,4 +14,48 @@ body {
   font-family: "Pirata One", serif;
   font-size: 20px;
   text-shadow: 2px 2px 3px var(--color-5);
+  &:not(:has(.cart.hidden, .session)) {
+    overflow-y: hidden;
+    .background-overlay {
+      display: block;
+      opacity: 0.9;
+    }
+  }
+
+  .background-overlay {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-5);
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    display: none;
+    z-index: 80;
+    animation: fadeIn 0.3s ease forwards;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-5);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #f8d468da;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.9;
+  }
 }

@@ -1,6 +1,5 @@
 export { default as AboutUs } from "./about-us";
 export { default as Home } from "./home";
-export { default as Cart } from "./cart";
 export { default as Checkout } from "./checkout";
 export { default as Contact } from "./contact";
 export { default as Production } from "./production";

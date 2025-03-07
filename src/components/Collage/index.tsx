@@ -1,29 +1,29 @@
 import { Fragment, useState } from "react";
-import { Button, Text } from "../";
-import { FaCartPlus } from "react-icons/fa6";
+import { Button, Error, Loader, Text } from "../";
 import { Link } from "react-router-dom";
+import { Beer } from "../../types/Beer";
 
 import "./Collage.css";
 
-type CollageProps = {
-  id: string | number;
-  image: string;
-  title: string;
-  description: string;
-};
+interface CollageProps {
+  beers: Beer[] | null;
+  loading: boolean;
+  error: string;
+}
 
-const Collage: React.FC<{
-  items: CollageProps[];
-  addToCart: (id: string | number) => void;
-}> = ({ items, addToCart }) => {
+const Collage: React.FC<CollageProps> = ({ beers, loading, error }) => {
   const [activeIndex, setActiveIndex] = useState<null | number>(null);
 
   const handleExpandItem = (index: number | null) =>
     setActiveIndex(activeIndex === index ? null : index);
 
+  if (loading) return <Loader />;
+
+  if (error) return <Error message={error} />;
+
   return (
     <div className="collage">
-      {items.map(({ image, description, title, id }, index) => (
+      {beers?.slice(0, 6).map(({ image, description, name, id }, index) => (
         <Fragment key={id}>
           <img
             className={`collage-item item-${index} ${
@@ -33,14 +33,11 @@ const Collage: React.FC<{
             src={image}
           />
           <div className="info">
-            <Text tag="h3">{title}</Text>
+            <Text tag="h2">{name}</Text>
             <Text>{description}</Text>
-            <div>
-              <Link to={`/tienda/producto/${id}`}>
-                <Button>Ver detalles</Button>
-              </Link>
-              <FaCartPlus onClick={() => addToCart(id)} />
-            </div>
+            <Link to={`/tienda/producto/${id}`}>
+              <Button>Ver detalles</Button>
+            </Link>
           </div>
         </Fragment>
       ))}

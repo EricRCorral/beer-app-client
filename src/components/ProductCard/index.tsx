@@ -1,10 +1,11 @@
 import { useContext } from "react";
-import { UserContext } from "../../context";
+import { CartContext, UserContext } from "../../context";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { FaCartPlus } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { Color } from "../../types/Beer";
 import { Text } from "..";
+import handleModifyCart from "../Cart/handleModifyCart";
 
 import "./product-card.css";
 
@@ -24,6 +25,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   name,
 }) => {
   const { user, setUser } = useContext(UserContext);
+  const { cart, setCart } = useContext(CartContext);
 
   const IS_FAV = user?.favs?.includes(id);
 
@@ -57,15 +59,19 @@ const ProductCard: React.FC<ProductCardProps> = ({
       );
   };
 
-  // WIP: CREATE CART FUNCTIONS
-  const addToCart = (
-    e: React.MouseEvent<SVGElement, MouseEvent>,
-    id: number
-  ) => {
+  const handleCart = (e: React.MouseEvent<SVGElement, MouseEvent>) => {
     e.stopPropagation();
-    console.log(id);
+    handleModifyCart(
+      user,
+      [
+        ...cart,
+        { beer_id: id, name, image, price, quantity: 0, user_id: user!.id },
+      ],
+      setCart,
+      id,
+      1
+    );
   };
-  /////////////////////////////
 
   const handleNavigate = (id: number) => navigate(`producto/${id}`);
 
@@ -83,8 +89,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         {name} - {color}
       </Text>
       <Text>
-        $ {price}{" "}
-        <FaCartPlus className="cart" onClick={(e) => addToCart(e, id)} />
+        $ {price} <FaCartPlus onClick={(e) => handleCart(e)} />
       </Text>
     </div>
   );

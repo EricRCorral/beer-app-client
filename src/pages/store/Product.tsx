@@ -3,13 +3,15 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Button, Error, Loader, Text } from "../../components";
 import { Beer } from "../../types/Beer";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa6";
-import { UserContext } from "../../context";
+import { CartContext, UserContext } from "../../context";
 import useFetch from "../../hooks/useFetch";
+import handleModifyCart from "../../components/Cart/handleModifyCart";
 
 const Product = () => {
   const { id } = useParams();
 
   const { user, setUser } = useContext(UserContext);
+  const { cart, setCart } = useContext(CartContext);
 
   const navigate = useNavigate();
 
@@ -58,10 +60,6 @@ const Product = () => {
       );
   };
 
-  // WIP: CREATE CART FUNCTIONS
-  const addToCart = () => console.log(id);
-  /////////////////////////////
-
   if (error) return <Error message={error} />;
 
   if (loading)
@@ -71,7 +69,29 @@ const Product = () => {
       </div>
     );
 
-  const { abv, color, density, description, ibu, image, name, price } = data!;
+  const {
+    abv,
+    color,
+    density,
+    description,
+    ibu,
+    image,
+    name,
+    price,
+    id: beer_id,
+  } = data!;
+
+  const handleCart = () =>
+    handleModifyCart(
+      user,
+      [
+        ...cart,
+        { beer_id, name, image, price, quantity: 0, user_id: user!.id },
+      ],
+      setCart,
+      beer_id,
+      cartNumber
+    );
 
   return (
     <div className="product">
@@ -85,11 +105,14 @@ const Product = () => {
         <Text>IBU: {ibu}</Text>
         <Text tag="h2">$ {price}</Text>
         <div className="buttons">
-          <Button onClick={addToCart}>
+          <Button onClick={handleCart}>
             Agregar {cartNumber} al carrito
             <div className="cart-icons">
               <FaCaretUp onClick={(e) => handleQuantity(e, 1)} />
-              <FaCaretDown onClick={(e) => handleQuantity(e, -1)} />
+              <FaCaretDown
+                className={cartNumber <= 1 ? "disabled" : ""}
+                onClick={(e) => handleQuantity(e, -1)}
+              />
             </div>
           </Button>
           <div className="cart-buttons"></div>

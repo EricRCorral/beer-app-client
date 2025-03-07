@@ -1,5 +1,5 @@
 .production {
-  margin: 20vh 10% 0;
+  padding: 20vh 10% 0;
   display: flex;
   flex-wrap: wrap;
   text-align: center;
@@ -27,7 +27,7 @@
 
 @media screen and (max-width: 1024px) {
   .production {
-    margin: 15vh 5px 0;
+    padding: 15vh 5px 0;
     > :nth-child(1).step,
     > :nth-child(2).step {
       width: 100%;

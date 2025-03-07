@@ -1,17 +1,9 @@
-import BeerVideo from "../../assets/videos/beer.mp4";
 import { Button, Text, Collage } from "../../components";
-import {
-  CervezaIpa,
-  CervezaIpa2,
-  CervezaNegra,
-  CervezaRoja,
-  CervezaRubia,
-  CervezaRubia2,
-  Us,
-  BeerProduction,
-  GoogleMaps,
-} from "../../assets/img";
+import { Us, BeerProduction, GoogleMaps } from "../../assets/img";
 import { Link } from "react-router-dom";
+import { Beer } from "../../types/Beer";
+import useFetch from "../../hooks/useFetch";
+import BeerVideo from "../../assets/videos/beer.mp4";
 
 import "./home.css";
 
@@ -36,71 +28,36 @@ const SECTIONS = [
   },
 ];
 
-const BEST_SELLERS = [
-  {
-    id: 1,
-    image: CervezaRubia,
-    title: "Rubia",
-    description: "Refrescante y ligera, con matices maltosos y suaves.",
-  },
-  {
-    id: 2,
-    image: CervezaRubia2,
-    title: "Dorada",
-    description: "Dorada y afrutada, con final ligeramente dulce.",
-  },
-  {
-    id: 3,
-    image: CervezaNegra,
-    title: "Stout",
-    description: "Profunda y cremosa, con notas de café y chocolate.",
-  },
-  {
-    id: 4,
-    image: CervezaRoja,
-    title: "Scottish",
-    description: "Caramelo y tostado, con amargor moderado y cuerpo medio.",
-  },
-  {
-    id: 5,
-    image: CervezaIpa2,
-    title: "Amber Ale",
-    description:
-      "Intensa y lupulada, con notas cítricas y amargas bien marcadas.",
-  },
-  {
-    id: 6,
-    image: CervezaIpa,
-    title: "IPA",
-    description: "Versión más aromática y resinosa, con cuerpo equilibrado.",
-  },
-];
+const Home = () => {
+  // WIP: IN FUTURE THE IDEA IS USE THE MOST SOLD BEERS. ALWAYS TOP 6. FOR NOW I AM GOING TO SLICE THEM IN COLLAGE COMPONENT
+  // IMPORTANT NOTE: I MODIFIED THE /BEERS ENDPOINT TO RECEIVE THE DESCRIPTION FIELD BUT WHEN I WILL HAVE THE TOP 6 ENDPOINT
+  // ROLLBACK THIS AND NOT RETURN DESCRIPTION IN /BEERS ENDPOINT
 
-// WIP: CREATE THIS FUNCTION
-const addToCart = (id: string | number) => {
-  console.log(id);
-};
+  const { data, loading, error } = useFetch<Beer[]>(
+    "http://localhost:3000/beers"
+  );
 
-const Home = () => (
-  <div className="home">
-    <video id="myVideo" src={BeerVideo} width="100%" muted autoPlay loop />
-    <div className="sections">
-      {SECTIONS.map(({ img, text, title, url }) => (
-        <section key={title}>
-          <img src={img} alt="Img" />
-          <div className="info">
-            <Text tag="h1">{title}</Text>
-            <Text>{text}</Text>
-            <Link to={url}>
-              <Button>Ver mas</Button>
-            </Link>
-          </div>
-        </section>
-      ))}
+  return (
+    <div className="home">
+      <video id="myVideo" src={BeerVideo} width="100%" muted autoPlay loop />
+      <div className="sections">
+        {SECTIONS.map(({ img, text, title, url }) => (
+          <section key={title}>
+            <img src={img} alt="Img" />
+            <div className="info">
+              <Text tag="h1">{title}</Text>
+              <Text>{text}</Text>
+              <Link to={url}>
+                <Button>Ver mas</Button>
+              </Link>
+            </div>
+          </section>
+        ))}
+      </div>
+      <Text tag="h1">Mas vendidas</Text>
+      <Collage beers={data} loading={loading} error={error} />
     </div>
-    <Text tag="h1">Mas vendidas</Text>
-    <Collage items={BEST_SELLERS} addToCart={addToCart} />
-  </div>
-);
+  );
+};
 
 export default Home;

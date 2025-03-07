@@ -13,14 +13,14 @@ const Session: React.FC<{ loading: boolean }> = ({ loading }) => {
   });
   const [error, setError] = useState("");
 
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const data = await (
+    const user = await (
       await fetch(
         `http://localhost:3000/user/${isLogin ? "signin" : "register"}`,
         {
@@ -32,11 +32,12 @@ const Session: React.FC<{ loading: boolean }> = ({ loading }) => {
       )
     ).json();
 
-    if (data.error) {
-      setError(data.error);
+    if (user.error) {
+      setError(user.error);
       return;
     }
 
+    setUser({ id: user.id, username: user.username, favs: [] });
     setError("");
 
     navigate("/");

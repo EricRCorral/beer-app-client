@@ -26,7 +26,7 @@
 
 .product {
   min-height: 100vh;
-  margin-top: 10vh;
+  padding-top: 10vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,6 +50,10 @@
           flex-direction: column;
           align-items: center;
           margin-left: 6px;
+          .disabled {
+            fill: grey;
+            pointer-events: none;
+          }
           svg:hover {
             transition: 0.3s;
             fill: var(--color-2);
