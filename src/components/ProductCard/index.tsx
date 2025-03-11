@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CartContext, UserContext } from "../../context";
+import { CartContext, SnackBarContext, UserContext } from "../../context";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { FaCartPlus } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
@@ -26,6 +26,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   const { user, setUser } = useContext(UserContext);
   const { cart, setCart } = useContext(CartContext);
+  const { setSnackBar } = useContext(SnackBarContext);
 
   const IS_FAV = user?.favs?.includes(id);
 
@@ -42,13 +43,13 @@ const ProductCard: React.FC<ProductCardProps> = ({
       return;
     }
 
-    const resp = await fetch("http://localhost:3000/wishlist", {
+    const RESP = await fetch("http://localhost:3000/wishlist", {
       method: IS_FAV ? "DELETE" : "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId: user?.id, beerId: id }),
     });
 
-    if (resp.status === 204)
+    if (RESP.status === 204) {
       setUser(
         IS_FAV
           ? {
@@ -57,20 +58,42 @@ const ProductCard: React.FC<ProductCardProps> = ({
             }
           : { ...user, favs: [...user.favs, id] }
       );
+
+      setSnackBar({
+        message: IS_FAV
+          ? `Se ha quitado a ${name} de sus favoritos`
+          : `Se ha agregado a ${name} a sus favoritos`,
+        color: "success",
+      });
+    }
   };
 
-  const handleCart = (e: React.MouseEvent<SVGElement, MouseEvent>) => {
+  const handleCart = async (e: React.MouseEvent<SVGElement, MouseEvent>) => {
     e.stopPropagation();
-    handleModifyCart(
+
+    const RESP = await handleModifyCart(
       user,
       [
         ...cart,
-        { beer_id: id, name, image, price, quantity: 0, user_id: user!.id },
+        {
+          beer_id: id,
+          name,
+          image,
+          price,
+          quantity: 0,
+          user_id: user?.id || "",
+        },
       ],
       setCart,
       id,
       1
     );
+
+    if (RESP)
+      setSnackBar({
+        message: RESP.message,
+        color: RESP.ok ? "success" : "danger",
+      });
   };
 
   const handleNavigate = (id: number) => navigate(`producto/${id}`);

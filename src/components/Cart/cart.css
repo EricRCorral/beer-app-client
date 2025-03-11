@@ -6,7 +6,7 @@
   border-left: 2px solid var(--color-6);
   border-right: 2px solid var(--color-6);
   right: 0px;
-  z-index: 100;
+  z-index: 110;
   animation: cart-enter 0.3s ease forwards;
   overflow-y: auto;
   overflow-x: hidden;
@@ -73,6 +73,7 @@
     }
   }
   &.hidden {
+    z-index: 10;
     transform: translateX(350px);
     animation: cart-leave 0.3s ease forwards;
   }

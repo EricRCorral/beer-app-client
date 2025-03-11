@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Button, Error, Loader, Text } from "../../components";
 import { Beer } from "../../types/Beer";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa6";
-import { CartContext, UserContext } from "../../context";
+import { CartContext, SnackBarContext, UserContext } from "../../context";
 import useFetch from "../../hooks/useFetch";
 import handleModifyCart from "../../components/Cart/handleModifyCart";
 
@@ -12,6 +12,7 @@ const Product = () => {
 
   const { user, setUser } = useContext(UserContext);
   const { cart, setCart } = useContext(CartContext);
+  const { setSnackBar } = useContext(SnackBarContext);
 
   const navigate = useNavigate();
 
@@ -49,7 +50,7 @@ const Product = () => {
       body: JSON.stringify({ userId: user?.id, beerId: id }),
     });
 
-    if (resp.status === 204)
+    if (resp.status === 204) {
       setUser(
         IS_FAV
           ? {
@@ -58,6 +59,14 @@ const Product = () => {
             }
           : { ...user, favs: [...user.favs, id] }
       );
+
+      setSnackBar({
+        message: IS_FAV
+          ? `Se ha quitado a ${name} de sus favoritos`
+          : `Se ha agregado a ${name} a sus favoritos`,
+        color: "success",
+      });
+    }
   };
 
   if (error) return <Error message={error} />;
@@ -81,17 +90,24 @@ const Product = () => {
     id: beer_id,
   } = data!;
 
-  const handleCart = () =>
-    handleModifyCart(
+  const handleCart = async () => {
+    const RESP = await handleModifyCart(
       user,
       [
         ...cart,
-        { beer_id, name, image, price, quantity: 0, user_id: user!.id },
+        { beer_id, name, image, price, quantity: 0, user_id: user?.id || "" },
       ],
       setCart,
       beer_id,
       cartNumber
     );
+
+    if (RESP)
+      setSnackBar({
+        message: RESP.message,
+        color: RESP.ok ? "success" : "danger",
+      });
+  };
 
   return (
     <div className="product">

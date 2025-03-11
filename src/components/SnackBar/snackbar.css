@@ -1,0 +1,17 @@
+.snackbar {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  max-width: 200px;
+  border-radius: 6px;
+  padding: 8px 12px;
+  z-index: 115;
+  background-color: var(--color-5);
+  filter: drop-shadow(0px 0px 4px var(--color-5));
+  &.danger {
+    background-color: #d20808;
+  }
+  &.success {
+    background-color: #07af14;
+  }
+}

@@ -18,6 +18,7 @@ import { Footer, Navbar, Chatbox } from "./components";
 import { User } from "./types/User";
 import { UserContext } from "./context";
 import useFetch from "./hooks/useFetch";
+import SnackBar from "./components/SnackBar";
 
 const Wrapper: React.FC<{ children: JSX.Element[] }> = ({ children }) => {
   const location = useLocation();
@@ -28,7 +29,7 @@ const Wrapper: React.FC<{ children: JSX.Element[] }> = ({ children }) => {
 };
 
 const App = () => {
-  const { data: session, loading } = useFetch<User>(
+  const { data: session, loading } = useFetch<User | false>(
     "http://localhost:3000/user/session",
     {
       credentials: "include",
@@ -42,9 +43,8 @@ const App = () => {
   const { setUser } = useContext(UserContext);
 
   useEffect(() => {
-    if (!loading && session) {
+    if (!loading && session)
       setUser({ id: session.id, username: session.username, favs: [] });
-    }
   }, [session, loading, setUser]);
 
   return (
@@ -72,6 +72,7 @@ const App = () => {
         <Footer />
         <Chatbox />
         <div className="background-overlay" onClick={handleCartVisibility} />
+        <SnackBar />
       </Wrapper>
     </BrowserRouter>
   );

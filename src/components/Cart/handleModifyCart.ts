@@ -20,6 +20,8 @@ const handleModifyCart = async (
     quantity: currentQuantity,
   } = cart.find(({ beer_id }) => beer_id === beerId)!;
 
+  const NEW_QUANTITY = currentQuantity + quantity;
+
   try {
     await fetch("http://localhost:3000/cart", {
       method: "POST",
@@ -30,7 +32,7 @@ const handleModifyCart = async (
         name,
         price,
         image,
-        quantity: currentQuantity + quantity,
+        quantity: NEW_QUANTITY,
       }),
     });
   } catch (error) {
@@ -43,8 +45,15 @@ const handleModifyCart = async (
     ).json();
 
     setCart(CART);
+
+    return {
+      ok: true,
+      message: `Ahora tienes ${NEW_QUANTITY} ${name} en tu carrito`,
+    };
   } catch (error) {
     console.log(error);
+
+    return { ok: false, message: String(error) };
   }
 };
 

@@ -1,5 +1,5 @@
 export { default as BeerProduction } from "./beer-production.jpg";
-export { default as Beer } from "./beer.png";
+export { default as Beer } from "./beer.jpg";
 export { default as GoogleMaps } from "./google-maps.jpg";
 export { default as Us } from "./us.jpg";
 export { default as Couple } from "./couple.jpg";

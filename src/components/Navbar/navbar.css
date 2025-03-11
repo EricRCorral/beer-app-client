@@ -10,7 +10,7 @@
     width: 90%;
     border-radius: 5px;
     padding: 0px 25px;
-    z-index: 5;
+    z-index: 105;
     transition: 0.3s ease-in-out;
     .menu-icon,
     .close-icon {
@@ -118,7 +118,7 @@
       position: fixed;
       top: 0;
       left: 0;
-      z-index: 100;
+      z-index: 200;
       color: white;
       width: 100vw;
       height: 100vh;

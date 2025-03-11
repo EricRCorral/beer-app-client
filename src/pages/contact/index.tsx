@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button, Input, Text } from "../../components";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
+import { SnackBarContext } from "../../context";
 
 import "./contact.css";
 import "leaflet/dist/leaflet.css";
@@ -20,6 +21,8 @@ const INITIAL_FORM_VALUE = {
 };
 
 const Contact = () => {
+  const { setSnackBar } = useContext(SnackBarContext);
+
   const [{ email, message, name, phone }, setForm] =
     useState(INITIAL_FORM_VALUE);
 
@@ -30,12 +33,7 @@ const Contact = () => {
     e.preventDefault();
     setForm(INITIAL_FORM_VALUE);
 
-    const FEEDBACK = document.getElementById("feedback-message");
-
-    FEEDBACK?.classList.add("sent-message");
-    setTimeout(() => {
-      FEEDBACK?.classList.remove("sent-message");
-    }, 5000);
+    setSnackBar({ message: "Mensaje enviado correctamente", color: "success" });
   };
 
   return (
@@ -80,9 +78,6 @@ const Contact = () => {
           onChange={({ target }) => handleFormValue("message", target.value)}
         />
         <Button>Enviar</Button>
-        <Text id="feedback-message" tag="h3">
-          Mensaje enviado correctamente
-        </Text>
       </form>
       <Text tag="h3">Puedes encontrarnos en San Miguel</Text>
       <MapContainer

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Button, Text, Input, Loader } from "../../components";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../../context";
+import { SnackBarContext, UserContext } from "../../context";
 
 import "./session.css";
 
@@ -14,6 +14,7 @@ const Session: React.FC<{ loading: boolean }> = ({ loading }) => {
   const [error, setError] = useState("");
 
   const { user, setUser } = useContext(UserContext);
+  const { setSnackBar } = useContext(SnackBarContext);
 
   const navigate = useNavigate();
 
@@ -39,6 +40,12 @@ const Session: React.FC<{ loading: boolean }> = ({ loading }) => {
 
     setUser({ id: user.id, username: user.username, favs: [] });
     setError("");
+    setSnackBar({
+      message: isLogin
+        ? "Inicio de sesión existoso"
+        : "Ha registrado su cuenta exitosamente",
+      color: "success",
+    });
 
     navigate("/");
   };
@@ -49,8 +56,12 @@ const Session: React.FC<{ loading: boolean }> = ({ loading }) => {
   const handleIsLogin = () => setIsLogin((prev) => !prev);
 
   useEffect(() => {
-    if (user) navigate("/");
-  }, [user, navigate]);
+    if (user) {
+      navigate("/");
+    } else {
+      setSnackBar({ message: "La sesión ha expirado", color: "danger", });
+    }
+  }, [user, navigate, setSnackBar]);
 
   if (loading)
     return (
