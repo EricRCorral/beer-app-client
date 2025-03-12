@@ -96,7 +96,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       });
   };
 
-  const handleNavigate = (id: number) => navigate(`producto/${id}`);
+  const handleNavigate = (id: number) => navigate(`/tienda/producto/${id}`);
 
   return (
     <div key={id} className="product-card" onClick={() => handleNavigate(id)}>
@@ -111,7 +111,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       <Text tag="h3">
         {name} - {color}
       </Text>
-      <Text>
+      <Text className="price-cart">
         $ {price} <FaCartPlus onClick={(e) => handleCart(e)} />
       </Text>
     </div>

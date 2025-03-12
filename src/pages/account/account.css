@@ -1,0 +1,32 @@
+.account {
+  min-height: 80vh;
+  text-align: center;
+  padding: 20vh 5% 0;
+  .select-bar {
+    margin: 40px auto;
+  }
+  .loader {
+    margin-top: 20vh;
+  }
+  .favs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    .fav,
+    .price-cart {
+      display: none;
+    }
+    .product-card {
+      height: 306px;
+      width: 21%;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .account {
+    .favs .product-card {
+      width: 75%;
+    }
+  }
+}
