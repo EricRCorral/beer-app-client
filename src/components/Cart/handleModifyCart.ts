@@ -23,7 +23,7 @@ const handleModifyCart = async (
   const NEW_QUANTITY = currentQuantity + quantity;
 
   try {
-    await fetch("http://localhost:3000/cart", {
+    await fetch("https://mature-halibut-neatly.ngrok-free.app/cart", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -41,7 +41,7 @@ const handleModifyCart = async (
 
   try {
     const CART = await (
-      await fetch(`http://localhost:3000/cart/${user.id}`)
+      await fetch(`https://mature-halibut-neatly.ngrok-free.app/cart/${user.id}`)
     ).json();
 
     setCart(CART);

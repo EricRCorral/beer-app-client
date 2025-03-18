@@ -1,5 +1,11 @@
 import { useContext, useEffect, useLayoutEffect, useState } from "react";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import {
   Home,
   AboutUs,
@@ -22,15 +28,22 @@ import SnackBar from "./components/SnackBar";
 
 const Wrapper: React.FC<{ children: JSX.Element[] }> = ({ children }) => {
   const location = useLocation();
+  const navigate = useNavigate();
+
   useLayoutEffect(() => {
     document.documentElement.scrollTo(0, 0);
   }, [location.pathname]);
+
+  useEffect(() => {
+    if (location.search.length > 0) navigate("/");
+  }, [location.search.length, navigate]);
+
   return children;
 };
 
 const App = () => {
   const { data: session, loading } = useFetch<User | false>(
-    "http://localhost:3000/user/session",
+    "https://mature-halibut-neatly.ngrok-free.app/user/session",
     {
       credentials: "include",
     }
@@ -60,7 +73,10 @@ const App = () => {
           <Route path="sobre-nosotros" element={<AboutUs />} />
           <Route path="produccion" element={<Production />} />
           <Route path="contacto" element={<Contact />} />
-          <Route path="checkout" element={<Checkout />} />
+          <Route
+            path="checkout"
+            element={<Checkout loadingUser={loading} session={session} />}
+          />
           <Route
             path="cuenta"
             element={<Account loadingUser={loading} session={session} />}

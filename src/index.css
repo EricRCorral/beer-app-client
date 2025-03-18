@@ -30,7 +30,7 @@ body {
     position: fixed;
     top: 0;
     display: none;
-    z-index: 80;
+    z-index: 108;
     animation: fadeIn 0.3s ease forwards;
   }
 }

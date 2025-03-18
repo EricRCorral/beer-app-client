@@ -15,3 +15,12 @@
     background-color: #07af14;
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .snackbar {
+    bottom: 10px;
+    left: 10px;
+    top: unset;
+    right: unset;
+  }
+}

@@ -12,14 +12,14 @@ const WishList = () => {
     loading,
     error,
   } = useFetch<Omit<Beer, "description" | "abv" | "ibu">[]>(
-    "http://localhost:3000/beers"
+    "https://mature-halibut-neatly.ngrok-free.app/beers"
   );
 
   const getFavs = async () => {
     if (!user) return;
 
     const FAVS: number[] = await (
-      await fetch(`http://localhost:3000/wishlist/${user?.id}`)
+      await fetch(`https://mature-halibut-neatly.ngrok-free.app/wishlist/${user?.id}`)
     ).json();
 
     setUser({ ...user, favs: FAVS });

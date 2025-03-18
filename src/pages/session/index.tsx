@@ -23,7 +23,7 @@ const Session: React.FC<{ loading: boolean }> = ({ loading }) => {
 
     const user = await (
       await fetch(
-        `http://localhost:3000/user/${isLogin ? "signin" : "register"}`,
+        `https://mature-halibut-neatly.ngrok-free.app/user/${isLogin ? "signin" : "register"}`,
         {
           method: "POST",
           credentials: "include",

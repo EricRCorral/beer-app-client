@@ -17,7 +17,7 @@ const Product = () => {
   const navigate = useNavigate();
 
   const { data, error, loading } = useFetch<Beer>(
-    `http://localhost:3000/beers/${id}`
+    `https://mature-halibut-neatly.ngrok-free.app/beers/${id}`
   );
 
   const [cartNumber, setCartNumber] = useState(1);
@@ -44,7 +44,7 @@ const Product = () => {
       return;
     }
 
-    const resp = await fetch("http://localhost:3000/wishlist", {
+    const resp = await fetch("https://mature-halibut-neatly.ngrok-free.app/wishlist", {
       method: IS_FAV ? "DELETE" : "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId: user?.id, beerId: id }),

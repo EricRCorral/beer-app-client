@@ -6,6 +6,7 @@
   margin: 2% 0px;
   transition: 0.3s ease;
   cursor: pointer;
+  z-index: 106;
   &:hover {
     box-shadow: 0px 0px 6px 2px var(--color-2);
     img {

@@ -34,7 +34,7 @@ const Home = () => {
   // ROLLBACK THIS AND NOT RETURN DESCRIPTION IN /BEERS ENDPOINT
 
   const { data, loading, error } = useFetch<Beer[]>(
-    "http://localhost:3000/beers"
+    "https://mature-halibut-neatly.ngrok-free.app/beers"
   );
 
   return (

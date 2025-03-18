@@ -19,7 +19,7 @@ const Cart: React.FC<CartProps> = ({ hidden, handleCartVisibility }) => {
 
   const getCart = async () => {
     const cart = await (
-      await fetch(`http://localhost:3000/cart/${user?.id}`)
+      await fetch(`https://mature-halibut-neatly.ngrok-free.app/cart/${user?.id}`)
     ).json();
 
     setCart(cart);
@@ -34,7 +34,7 @@ const Cart: React.FC<CartProps> = ({ hidden, handleCartVisibility }) => {
     handleModifyCart(user, cart, setCart, beer_id, quantity);
 
   const handleCartRemove = async (beerId: number) => {
-    const resp = await fetch(`http://localhost:3000/cart/`, {
+    const resp = await fetch(`https://mature-halibut-neatly.ngrok-free.app/cart/`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

@@ -43,7 +43,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       return;
     }
 
-    const RESP = await fetch("http://localhost:3000/wishlist", {
+    const RESP = await fetch("https://mature-halibut-neatly.ngrok-free.app/wishlist", {
       method: IS_FAV ? "DELETE" : "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId: user?.id, beerId: id }),
