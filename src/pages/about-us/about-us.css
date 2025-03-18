@@ -1,7 +1,7 @@
 .about-us {
   margin-bottom: 3vh;
   .parallax {
-    height: 100vh;
+    height: 110vh;
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: contain;
@@ -15,7 +15,7 @@
       width: 300px;
     }
     h1 {
-        font-size: 60px;
+      font-size: 60px;
       text-shadow: 1px 1px 1px var(--color-5);
     }
     &.couple {
@@ -38,6 +38,7 @@
     margin-bottom: 0;
     .parallax {
       flex-direction: column;
+      min-height: fit-content;
       .text {
         margin: 0 0 36px;
         width: 90%;

@@ -81,23 +81,6 @@
     width: 80%;
     margin: 8px 0;
   }
-  .close-bar {
-    height: 100vh;
-    width: 30px;
-    background-color: #23201e;
-    position: fixed;
-    top: 0;
-    left: 0;
-    border-right: 2px solid var(--color-6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    &::after {
-      font-size: 30px;
-      content: ">";
-    }
-  }
   &.initial {
     visibility: hidden;
   }

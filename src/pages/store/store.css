@@ -36,9 +36,6 @@
   }
   > div {
     width: 30%;
-    p {
-      font-size: 24px;
-    }
     .buttons {
       display: flex;
       .btn {

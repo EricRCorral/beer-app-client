@@ -9,7 +9,7 @@
     color: var(--color-6);
     font-family: "Pirata One", serif;
     margin: 5px 0px;
-    font-size: 20px;
+    font-size: 26px;
     transition: 0.3s ease;
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
@@ -23,7 +23,7 @@
   svg {
     position: relative;
     cursor: pointer;
-    top: -30px;
+    top: -36px;
     left: 93%;
     color: var(--color-1);
   }
