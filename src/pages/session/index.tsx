@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Button, Text, Input, Loader } from "../../components";
 import { useNavigate } from "react-router-dom";
 import { SnackBarContext, UserContext } from "../../context";
+import { HiHome } from "react-icons/hi";
 
 import "./session.css";
 
@@ -23,7 +24,9 @@ const Session: React.FC<{ loading: boolean }> = ({ loading }) => {
 
     const user = await (
       await fetch(
-        `https://mature-halibut-neatly.ngrok-free.app/user/${isLogin ? "signin" : "register"}`,
+        `https://mature-halibut-neatly.ngrok-free.app/user/${
+          isLogin ? "signin" : "register"
+        }`,
         {
           method: "POST",
           credentials: "include",
@@ -55,11 +58,16 @@ const Session: React.FC<{ loading: boolean }> = ({ loading }) => {
 
   const handleIsLogin = () => setIsLogin((prev) => !prev);
 
+  const handleGoHome = () => navigate("/");
+
   useEffect(() => {
-    if (user) {
+    if (user?.id) {
       navigate("/");
     } else {
-      setSnackBar({ message: "La sesión ha expirado", color: "danger", });
+      setSnackBar({
+        message: "Debe iniciar sesión para continuar",
+        color: "danger",
+      });
     }
   }, [user, navigate, setSnackBar]);
 
@@ -73,7 +81,12 @@ const Session: React.FC<{ loading: boolean }> = ({ loading }) => {
   return (
     <div className="session">
       <form onSubmit={handleSubmit}>
-        <Text tag="h2">{isLogin ? "Inicio de sesión" : "Registro"}</Text>
+        <Text tag="h2">
+          <Button type="button" onClick={handleGoHome} className="back">
+            <HiHome />
+          </Button>
+          {isLogin ? "Inicio de sesión" : "Registro"}
+        </Text>
         <Text tag="label">Nombre de usuario</Text>
         <Input
           onChange={({ target }) => handleFormValue("username", target.value)}
@@ -86,7 +99,9 @@ const Session: React.FC<{ loading: boolean }> = ({ loading }) => {
           required
           type="password"
         />
-        <Button>{isLogin ? "Iniciar sesión" : "Registrarse"}</Button>
+        <Button type="submit">
+          {isLogin ? "Iniciar sesión" : "Registrarse"}
+        </Button>
         <Text className="error">{error}</Text>
         <div>
           <Text tag="small" onClick={handleIsLogin}>

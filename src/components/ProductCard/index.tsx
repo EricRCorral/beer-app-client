@@ -38,7 +38,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   ) => {
     e.stopPropagation();
 
-    if (!user) {
+    if (!user?.id) {
       navigate("/sesion");
       return;
     }

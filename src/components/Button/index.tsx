@@ -1,6 +1,6 @@
 import "./button.css";
 
-const Button: React.FC<React.HTMLAttributes<HTMLElement>> = ({
+const Button: React.FC<React.ButtonHTMLAttributes<HTMLElement>> = ({
   children,
   ...rest
 }) => {

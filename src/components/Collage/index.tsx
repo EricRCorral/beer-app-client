@@ -23,7 +23,7 @@ const Collage: React.FC<CollageProps> = ({ beers, loading, error }) => {
 
   return (
     <div className="collage">
-      {beers?.slice(0, 6).map(({ image, description, name, id }, index) => (
+      {beers?.map(({ image, description, name, id }, index) => (
         <Fragment key={id}>
           <img
             className={`collage-item item-${index} ${

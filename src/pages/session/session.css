@@ -17,8 +17,9 @@
       }
     }
     h2 {
-      text-align: center;
       color: var(--color-1);
+      display: flex;
+      align-items: center;
     }
     input,
     label {
@@ -32,6 +33,12 @@
     .btn {
       width: 100%;
       margin: 30px 0 10px;
+      &.back {
+        width: fit-content;
+        margin: 0 16px 0 0;
+        padding: 3px;
+        height: 34px;
+      }
     }
     div:has(small) {
       text-align: center;

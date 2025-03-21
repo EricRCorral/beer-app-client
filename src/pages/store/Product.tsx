@@ -39,7 +39,7 @@ const Product = () => {
   ) => {
     e.stopPropagation();
 
-    if (!user) {
+    if (!user?.id) {
       navigate("/sesion");
       return;
     }

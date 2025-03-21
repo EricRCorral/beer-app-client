@@ -25,7 +25,7 @@ const Checkout: React.FC<CheckoutProps> = ({ loadingUser, session }) => {
 
     const { id } = await (
       await fetch(
-        "https://mature-halibut-neatly.ngrok-free.app/checkout/create_preference",
+        "https://mature-halibut-neatly.ngrok-free.app/payments/create_preference",
         {
           method: "POST",
           headers: {
@@ -36,7 +36,7 @@ const Checkout: React.FC<CheckoutProps> = ({ loadingUser, session }) => {
               id: beer_id,
               quantity,
               title: name,
-              unit_price: price / 1000,
+              unit_price: price,
               picture_url: image,
               user_id: user?.id,
             }))

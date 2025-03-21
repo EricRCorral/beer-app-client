@@ -8,7 +8,7 @@ const handleModifyCart = async (
   beerId: number,
   quantity: number
 ) => {
-  if (!user) {
+  if (!user?.id) {
     location.assign("/sesion");
     return;
   }

@@ -26,7 +26,8 @@
       order: 1;
     }
     a svg,
-    .cart-icon {
+    .cart-icon,
+    .logout-icon {
       width: 30px;
       height: 30px;
       cursor: pointer;
@@ -93,7 +94,7 @@
       width: 90%;
       border-radius: 5px;
       padding: 5px;
-      z-index: 107; 
+      z-index: 107;
       .account-cart-box {
         order: unset;
       }
@@ -106,7 +107,7 @@
         width: 40px;
       }
       img {
-        margin-right: 18px;
+        margin-right: 55px;
         width: 50px;
         height: 50px;
       }
@@ -127,7 +128,8 @@
 
       .menu-icon,
       .user-icon,
-      .cart-icon {
+      .cart-icon,
+      .logout-icon {
         display: none;
       }
       &.hidden {

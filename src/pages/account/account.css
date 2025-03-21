@@ -2,6 +2,9 @@
   min-height: 80vh;
   text-align: center;
   padding: 20vh 5% 0;
+  .no-data {
+    margin-top: 10vh;
+  }
   .select-bar {
     margin: 40px auto;
   }
@@ -21,6 +24,59 @@
       width: 21%;
     }
   }
+  .history {
+    margin: 0 auto;
+    min-width: 80%;
+    h3,
+    h4 {
+      letter-spacing: 2px;
+    }
+    td,
+    th {
+      padding: 8px 0;
+      width: 33.333%;
+    }
+    .payment {
+      cursor: pointer;
+      &.odd {
+        background-color: var(--color-4);
+      }
+      &:hover,
+      &.opened {
+        background-color: var(--color-2);
+        td {
+          border: none;
+        }
+      }
+    }
+    .payment-item-header {
+      display: none;
+      opacity: 0;
+      animation: openRow 0.5s ease forwards;
+      h4 {
+        margin: 0;
+      }
+    }
+    .payment-item {
+      background-color: var(--color-5);
+      display: none;
+      opacity: 0;
+      animation: openRow 0.5s ease forwards;
+      p {
+        margin: 0;
+      }
+      img {
+        height: 80px;
+      }
+    }
+    .opened {
+      display: table-row;
+      th,
+      td {
+        border: 1px solid var(--color-1);
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 1024px) {
@@ -28,5 +84,24 @@
     .favs .product-card {
       width: 75%;
     }
+    .history {
+      h3 {
+        font-size: 26px;
+      }
+      h4 {
+        font-size: 22px;
+      }
+    }
+  }
+}
+
+@keyframes openRow {
+  from {
+    transform: translateY(-15px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
   }
 }

@@ -29,12 +29,8 @@ const SECTIONS = [
 ];
 
 const Home = () => {
-  // WIP: IN FUTURE THE IDEA IS USE THE MOST SOLD BEERS. ALWAYS TOP 6. FOR NOW I AM GOING TO SLICE THEM IN COLLAGE COMPONENT
-  // IMPORTANT NOTE: I MODIFIED THE /BEERS ENDPOINT TO RECEIVE THE DESCRIPTION FIELD BUT WHEN I WILL HAVE THE TOP 6 ENDPOINT
-  // ROLLBACK THIS AND NOT RETURN DESCRIPTION IN /BEERS ENDPOINT
-
   const { data, loading, error } = useFetch<Beer[]>(
-    "https://mature-halibut-neatly.ngrok-free.app/beers"
+    "https://mature-halibut-neatly.ngrok-free.app/beers/best-sellers"
   );
 
   return (

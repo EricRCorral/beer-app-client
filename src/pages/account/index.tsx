@@ -22,7 +22,7 @@ const Account: React.FC<AccountProps> = ({ loadingUser, session }) => {
   const handleNavigate = (path: string) => navigate(path);
 
   useEffect(() => {
-    if (!loadingUser && !session && !user) navigate("/sesion");
+    if (!loadingUser && !session && !user?.id) navigate("/sesion");
   }, [user, navigate, session, loadingUser]);
 
   return (

@@ -40,6 +40,9 @@
       height: 90vh;
     }
     .sections {
+      & > :nth-child(even) {
+        text-align: left;
+      }
       > :first-child h1 {
         margin-top: 5px;
       }
