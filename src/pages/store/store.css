@@ -21,6 +21,26 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    .animated-box {
+      width: 26%;
+      height: 400px;
+      background-color: var(--color-5);
+      border-radius: 20px;
+      margin: 2% 0px;
+      transition: 0.3s ease;
+      cursor: pointer;
+      z-index: 106;
+      opacity: 0;
+      &.active {
+        animation: slideUpProduct 1s ease forwards;
+      }
+      &:hover {
+        box-shadow: 0px 0px 6px 2px var(--color-2);
+        img {
+          transform: scale(1.1);
+        }
+      }
+    }
   }
 }
 
@@ -69,6 +89,11 @@
 }
 
 @media screen and (max-width: 1024px) {
+  .store .products {
+    .animated-box {
+      width: 90%;
+    }
+  }
   .product {
     flex-direction: column;
     justify-items: center;

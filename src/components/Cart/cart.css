@@ -7,7 +7,7 @@
   border-right: 2px solid var(--color-6);
   right: 0px;
   z-index: 110;
-  animation: cart-enter 0.3s ease forwards;
+  animation: cartEnter 0.3s ease forwards;
   overflow-y: auto;
   overflow-x: hidden;
   text-align: center;
@@ -18,7 +18,7 @@
     width: 90%;
     margin: 0 auto;
     height: 200px;
-    padding-bottom: 10px; 
+    padding-bottom: 10px;
     > div {
       display: flex;
       flex-direction: column;
@@ -76,7 +76,7 @@
   &.hidden {
     z-index: 10;
     transform: translateX(350px);
-    animation: cart-leave 0.3s ease forwards;
+    animation: cartLeave 0.3s ease forwards;
   }
   .btn {
     width: 80%;
@@ -90,28 +90,6 @@
   }
   &::-webkit-scrollbar-thumb {
     border-right: 2px solid var(--color-5);
-  }
-}
-
-@keyframes cart-enter {
-  from {
-    transform: translateX(350px);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0px);
-    opacity: 1;
-  }
-}
-
-@keyframes cart-leave {
-  from {
-    transform: translateX(0px);
-    opacity: 1;
-  }
-  to {
-    transform: translateX(350px);
-    opacity: 0;
   }
 }
 

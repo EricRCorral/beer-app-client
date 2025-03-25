@@ -3,6 +3,7 @@ import { Error, Loader, ProductCard, Text } from "../../components";
 import { UserContext } from "../../context";
 import { Beer } from "../../types/Beer";
 import useFetch from "../../hooks/useFetch";
+import AnimatedBox from "../../components/AnimatedBox";
 
 const WishList = () => {
   const { user, setUser } = useContext(UserContext);
@@ -48,7 +49,11 @@ const WishList = () => {
       )}
       <div className="favs">
         {FAVS.length > 0 &&
-          FAVS.map((beer) => <ProductCard key={beer.id} {...beer} />)}
+          FAVS.map((beer) => (
+            <AnimatedBox key={beer.id}>
+              <ProductCard {...beer} />
+            </AnimatedBox>
+          ))}
       </div>
     </>
   );

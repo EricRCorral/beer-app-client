@@ -20,9 +20,18 @@
     }
     &.couple {
       background-image: url("../../assets/img/couple.jpg");
+      animation: blurAnimation 1s linear forwards;
+      .text {
+        filter: blur(5px);
+        animation: blurAnimation 1s linear 1s forwards;
+      }
     }
     &.group {
       background-image: url("../../assets/img/group.jpg");
+      filter: blur(5px);
+      animation: blurAnimation linear forwards;
+      animation-timeline: view();
+      animation-range: entry 20% cover 40%;
     }
   }
 

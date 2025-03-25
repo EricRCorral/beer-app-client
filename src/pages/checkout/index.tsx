@@ -58,8 +58,8 @@ const Checkout: React.FC<CheckoutProps> = ({ loadingUser, session }) => {
     <div className="checkout">
       <Text tag="h2">Estas por pagar por las siguientes cervezas</Text>
       <div className="products">
-        {cart.map(({ name, price, quantity, image }) => (
-          <div>
+        {cart.map(({ name, price, quantity, image, beer_id }) => (
+          <div key={beer_id}>
             <img src={image} />
             <div>
               <Text tag="h2">{name}</Text>

@@ -5,6 +5,7 @@ import { UserContext } from "../../context";
 import useFetch from "../../hooks/useFetch";
 
 import "./store.css";
+import AnimatedBox from "../../components/AnimatedBox";
 
 const COLORS: Color[] = ["Rubia", "Roja", "Negra"];
 const DENSITIES: Density[] = ["Ligero", "Medio", "Alto"];
@@ -20,7 +21,9 @@ const Store = () => {
     if (!user) return;
 
     const FAVS: number[] = await (
-      await fetch(`https://mature-halibut-neatly.ngrok-free.app/wishlist/${user?.id}`)
+      await fetch(
+        `https://mature-halibut-neatly.ngrok-free.app/wishlist/${user?.id}`
+      )
     ).json();
 
     setUser({ ...user, favs: FAVS });
@@ -87,7 +90,9 @@ const Store = () => {
       {beers.length > 0 && (
         <div className="products">
           {beers.map((beer) => (
-            <ProductCard key={beer.id} {...beer} />
+            <AnimatedBox key={beer.id}>
+              <ProductCard {...beer} />
+            </AnimatedBox>
           ))}
         </div>
       )}

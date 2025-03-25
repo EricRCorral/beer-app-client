@@ -74,21 +74,3 @@
     }
   }
 }
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 0.9;
-  }
-}
-
-@keyframes noDisplay {
-  from {
-    display: block;
-  }
-  to {
-    display: none;
-  }
-}

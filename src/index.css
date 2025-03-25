@@ -1,3 +1,5 @@
+@import url("./animation.css");
+
 :root {
   --color-1: #f8d568;
   --color-2: #d4914b;
@@ -14,6 +16,7 @@ body {
   font-family: "Pirata One", serif;
   font-size: 26px;
   text-shadow: 2px 2px 3px var(--color-5);
+  overflow-x: hidden;
   &:not(:has(.cart.hidden, .session)) {
     overflow-y: hidden;
     .background-overlay {
@@ -49,13 +52,4 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: #f8d468da;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 0.9;
-  }
 }

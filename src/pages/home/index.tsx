@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Beer } from "../../types/Beer";
 import useFetch from "../../hooks/useFetch";
 import BeerVideo from "../../assets/videos/beer.mp4";
+import AnimatedBox from "../../components/AnimatedBox";
 
 import "./home.css";
 
@@ -50,8 +51,12 @@ const Home = () => {
           </section>
         ))}
       </div>
-      <Text tag="h1">Mas vendidas</Text>
-      <Collage beers={data} loading={loading} error={error} />
+      <AnimatedBox className="best-sellers-title">
+        <Text tag="h1">Mas vendidas</Text>
+      </AnimatedBox>
+      <AnimatedBox className="collage-animation-box">
+        <Collage beers={data} loading={loading} error={error} />
+      </AnimatedBox>
     </div>
   );
 };

@@ -19,9 +19,25 @@
     .price-cart {
       display: none;
     }
-    .product-card {
+    .animated-box {
       height: 306px;
       width: 21%;
+      background-color: var(--color-5);
+      border-radius: 20px;
+      margin: 2% 0px;
+      transition: 0.3s ease;
+      cursor: pointer;
+      z-index: 106;
+      opacity: 0;
+      &.active {
+        animation: slideUpProduct 1s ease forwards;
+      }
+      &:hover {
+        box-shadow: 0px 0px 6px 2px var(--color-2);
+        img {
+          transform: scale(1.1);
+        }
+      }
     }
   }
   .history {
@@ -81,7 +97,7 @@
 
 @media screen and (max-width: 1024px) {
   .account {
-    .favs .product-card {
+    .favs .animated-box {
       width: 75%;
     }
     .history {
@@ -92,16 +108,5 @@
         font-size: 22px;
       }
     }
-  }
-}
-
-@keyframes openRow {
-  from {
-    transform: translateY(-15px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0px);
-    opacity: 1;
   }
 }

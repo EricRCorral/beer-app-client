@@ -2,6 +2,7 @@
   video {
     object-fit: cover;
     height: 100vh;
+    animation: blurAnimation 2s ease forwards;
   }
   h1 {
     text-align: center;
@@ -21,6 +22,14 @@
       display: flex;
       justify-items: center;
       width: 70%;
+      transform: translateX(300px);
+      opacity: 0;
+      animation: slideX ease-out forwards;
+      animation-timeline: view();
+      animation-range: entry 30% cover 50%;
+      &:nth-child(even) {
+        transform: translateX(-300px);
+      }
       .info {
         margin: 0 10% 0 0;
         line-height: 40px;
@@ -34,10 +43,23 @@
       }
     }
   }
+  .best-sellers-title {
+    opacity: 0;
+    transform: rotateX(90deg);
+    &.active {
+      animation: rotateXAnimation 1s ease forwards;
+    }
+  }
+  .collage-animation-box {
+    opacity: 0;
+    &.active {
+      animation: slideUp 1s ease forwards;
+    }
+  }
 
   @media screen and (max-width: 1024px) {
     video {
-      height: 90vh;
+      height: 100vh;
     }
     .sections {
       & > :nth-child(even) {
@@ -50,6 +72,11 @@
         flex-wrap: wrap;
         width: 92%;
         margin: 0 auto;
+        transform: translateY(150px);
+        opacity: 0;
+        animation: slideUp ease-out forwards;
+        animation-timeline: view();
+        animation-range: entry 30% cover 50%;
         .info {
           line-height: normal;
           margin: 0;
