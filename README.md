@@ -1,50 +1,24 @@
-# React + TypeScript + Vite
+# Welcome to BeerApp!
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**This is the client and work together with this [server](https://github.com/EricRCorral/beer-app-server). In the next section you will find the required steps to run locally this project.**
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Installations and configurations
 
-## Expanding the ESLint configuration
+1. Clone the repo with `git clone https://github.com/EricRCorral/beer-app-client.git`
+2. Run `npm i` to install dependencies
+3. Create a `.env` file in the root and set the next values:
+   - VITE_PUBLIC_KEY_MP: this is a public key from MercadoPago. To obtain this you will need a [MercadoPago](https://www.mercadopago.com.ar/) account, then go to [Your integrations](https://www.mercadopago.com.ar/developers/panel/app) create a CheckoutPro application, access to your application and create 2 test accounts (one buyer and one seller). Access to your seller account, create a CheckoutPro application and you will fnd the public key in credentials for production section.
+   You can find more details about it [here](https://www.mercadopago.com.ar/developers/es/docs/checkout-pro/landing).
+   - VITE_NGROK_URL: You should find this in your enviroments variables in beer-app-server project.
+4. Run `npm run dev` and by default your client should be [here](https://localhost:5173/).
+ 
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### Some stuffs you can do in BeerApp:
+- Create and sign in with your user
+- Add/remove beers to your cart
+- Buy it with a test user from MercadoPago
+- Add beers to favourites
+- See your buy history
