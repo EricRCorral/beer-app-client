@@ -2,10 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import { Beer, Color, Density } from "../../types/Beer";
 import { Error, Loader, ProductCard, SelectBar, Text } from "../../components";
 import { UserContext } from "../../context";
+import { API_URL } from "../../constants";
+import AnimatedBox from "../../components/AnimatedBox";
 import useFetch from "../../hooks/useFetch";
 
 import "./store.css";
-import AnimatedBox from "../../components/AnimatedBox";
 
 const COLORS: Color[] = ["Rubia", "Roja", "Negra"];
 const DENSITIES: Density[] = ["Ligero", "Medio", "Alto"];
@@ -13,7 +14,7 @@ const DENSITIES: Density[] = ["Ligero", "Medio", "Alto"];
 const Store = () => {
   const { data, loading, error } = useFetch<
     Omit<Beer, "description" | "abv" | "ibu">[]
-  >("https://mature-halibut-neatly.ngrok-free.app/beers");
+  >(`${API_URL}beers`);
 
   const { user, setUser } = useContext(UserContext);
 
@@ -21,9 +22,7 @@ const Store = () => {
     if (!user) return;
 
     const FAVS: number[] = await (
-      await fetch(
-        `https://mature-halibut-neatly.ngrok-free.app/wishlist/${user?.id}`
-      )
+      await fetch(`${API_URL}wishlist/${user?.id}`)
     ).json();
 
     setUser({ ...user, favs: FAVS });

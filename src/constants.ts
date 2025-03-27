@@ -5,3 +5,5 @@ export const PAGES = [
   { text: "Producción", url: "produccion" },
   { text: "Contacto", url: "contacto" },
 ];
+
+export const API_URL = import.meta.env.VITE_NGROK_URL;

@@ -23,6 +23,7 @@ import {
 import { Footer, Navbar, Chatbox } from "./components";
 import { User } from "./types/User";
 import { UserContext } from "./context";
+import { API_URL } from "./constants";
 import useFetch from "./hooks/useFetch";
 import SnackBar from "./components/SnackBar";
 
@@ -43,7 +44,7 @@ const Wrapper: React.FC<{ children: JSX.Element[] }> = ({ children }) => {
 
 const App = () => {
   const { data: session, loading } = useFetch<User | false>(
-    "https://mature-halibut-neatly.ngrok-free.app/user/session",
+    `${API_URL}user/session`,
     {
       credentials: "include",
     }

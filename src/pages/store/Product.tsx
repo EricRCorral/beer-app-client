@@ -4,6 +4,7 @@ import { Button, Error, Loader, Text } from "../../components";
 import { Beer } from "../../types/Beer";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa6";
 import { CartContext, SnackBarContext, UserContext } from "../../context";
+import { API_URL } from "../../constants";
 import useFetch from "../../hooks/useFetch";
 import handleModifyCart from "../../components/Cart/handleModifyCart";
 
@@ -16,9 +17,7 @@ const Product = () => {
 
   const navigate = useNavigate();
 
-  const { data, error, loading } = useFetch<Beer>(
-    `https://mature-halibut-neatly.ngrok-free.app/beers/${id}`
-  );
+  const { data, error, loading } = useFetch<Beer>(`${API_URL}beers/${id}`);
 
   const [cartNumber, setCartNumber] = useState(1);
 
@@ -44,7 +43,7 @@ const Product = () => {
       return;
     }
 
-    const resp = await fetch("https://mature-halibut-neatly.ngrok-free.app/wishlist", {
+    const resp = await fetch(`${API_URL}wishlist`, {
       method: IS_FAV ? "DELETE" : "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId: user?.id, beerId: id }),

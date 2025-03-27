@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { Error, Loader, ProductCard, Text } from "../../components";
 import { UserContext } from "../../context";
 import { Beer } from "../../types/Beer";
+import { API_URL } from "../../constants";
 import useFetch from "../../hooks/useFetch";
 import AnimatedBox from "../../components/AnimatedBox";
 
@@ -12,17 +13,13 @@ const WishList = () => {
     data: beers,
     loading,
     error,
-  } = useFetch<Omit<Beer, "description" | "abv" | "ibu">[]>(
-    "https://mature-halibut-neatly.ngrok-free.app/beers"
-  );
+  } = useFetch<Omit<Beer, "description" | "abv" | "ibu">[]>(`${API_URL}beers`);
 
   const getFavs = async () => {
     if (!user) return;
 
     const FAVS: number[] = await (
-      await fetch(
-        `https://mature-halibut-neatly.ngrok-free.app/wishlist/${user?.id}`
-      )
+      await fetch(`${API_URL}wishlist/${user?.id}`)
     ).json();
 
     setUser({ ...user, favs: FAVS });

@@ -2,6 +2,7 @@ import { Button, Text, Collage } from "../../components";
 import { Us, BeerProduction, GoogleMaps } from "../../assets/img";
 import { Link } from "react-router-dom";
 import { Beer } from "../../types/Beer";
+import { API_URL } from "../../constants";
 import useFetch from "../../hooks/useFetch";
 import BeerVideo from "../../assets/videos/beer.mp4";
 import AnimatedBox from "../../components/AnimatedBox";
@@ -31,7 +32,7 @@ const SECTIONS = [
 
 const Home = () => {
   const { data, loading, error } = useFetch<Beer[]>(
-    "https://mature-halibut-neatly.ngrok-free.app/beers/best-sellers"
+    `${API_URL}beers/best-sellers`
   );
 
   return (

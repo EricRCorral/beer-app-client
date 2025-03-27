@@ -4,7 +4,7 @@ import { FaUser } from "react-icons/fa6";
 import { FiLogOut } from "react-icons/fi";
 import { Cart, Text } from "../";
 import { Beer } from "../../assets/img/";
-import { PAGES } from "../../constants";
+import { API_URL, PAGES } from "../../constants";
 import { Link, useLocation } from "react-router-dom";
 import { CartContext, SnackBarContext, UserContext } from "../../context";
 
@@ -25,10 +25,9 @@ const Navbar: React.FC<NavbarProps> = ({ handleCartVisibility, hidden }) => {
   const { pathname } = useLocation();
 
   const handleLogout = async () => {
-    const resp = await fetch(
-      "https://mature-halibut-neatly.ngrok-free.app/user/logout",
-      { credentials: "include" }
-    );
+    const resp = await fetch(`${API_URL}user/logout`, {
+      credentials: "include",
+    });
     if (resp.status === 204) {
       setUser(null);
       setCart([]);

@@ -2,13 +2,14 @@ import { useContext, useState, Fragment } from "react";
 import { UserContext } from "../../context";
 import { Error, Loader, Text } from "../../components";
 import { Payment } from "../../types/Payments";
+import { API_URL } from "../../constants";
 import useFetch from "../../hooks/useFetch";
 
 const History = () => {
   const { user } = useContext(UserContext);
 
   const { data, error, loading } = useFetch<Payment[]>(
-    `https://mature-halibut-neatly.ngrok-free.app/payments/${user?.id}`
+    `${API_URL}payments/${user?.id}`
   );
 
   const [paymentOpened, setPaymentOpened] = useState(-1);

@@ -5,6 +5,7 @@ import { FaCartPlus } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { Color } from "../../types/Beer";
 import { Text } from "..";
+import { API_URL } from "../../constants";
 import handleModifyCart from "../Cart/handleModifyCart";
 
 import "./product-card.css";
@@ -43,7 +44,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       return;
     }
 
-    const RESP = await fetch("https://mature-halibut-neatly.ngrok-free.app/wishlist", {
+    const RESP = await fetch(`${API_URL}wishlist`, {
       method: IS_FAV ? "DELETE" : "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId: user?.id, beerId: id }),

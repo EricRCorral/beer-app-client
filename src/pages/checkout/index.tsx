@@ -4,6 +4,7 @@ import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import { CartContext, UserContext } from "../../context";
 import { useNavigate } from "react-router-dom";
 import { User } from "../../types/User";
+import { API_URL } from "../../constants";
 
 import "./checkout.css";
 
@@ -24,25 +25,22 @@ const Checkout: React.FC<CheckoutProps> = ({ loadingUser, session }) => {
     initMercadoPago(import.meta.env.VITE_PUBLIC_KEY_MP);
 
     const { id } = await (
-      await fetch(
-        "https://mature-halibut-neatly.ngrok-free.app/payments/create_preference",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(
-            cart.map(({ beer_id, quantity, image, name, price }) => ({
-              id: beer_id,
-              quantity,
-              title: name,
-              unit_price: price,
-              picture_url: image,
-              user_id: user?.id,
-            }))
-          ),
-        }
-      )
+      await fetch(`${API_URL}payments/create_preference`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(
+          cart.map(({ beer_id, quantity, image, name, price }) => ({
+            id: beer_id,
+            quantity,
+            title: name,
+            unit_price: price,
+            picture_url: image,
+            user_id: user?.id,
+          }))
+        ),
+      })
     ).json();
 
     setPreferenceId(id);

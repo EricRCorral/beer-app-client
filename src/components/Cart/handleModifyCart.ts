@@ -1,3 +1,4 @@
+import { API_URL } from "../../constants";
 import { CartItem } from "../../types/Cart";
 import { User } from "../../types/User";
 
@@ -23,7 +24,7 @@ const handleModifyCart = async (
   const NEW_QUANTITY = currentQuantity + quantity;
 
   try {
-    await fetch("https://mature-halibut-neatly.ngrok-free.app/cart", {
+    await fetch(`${API_URL}cart`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -41,7 +42,7 @@ const handleModifyCart = async (
 
   try {
     const CART = await (
-      await fetch(`https://mature-halibut-neatly.ngrok-free.app/cart/${user.id}`)
+      await fetch(`${API_URL}cart/${user.id}`)
     ).json();
 
     setCart(CART);

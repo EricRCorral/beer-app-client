@@ -3,6 +3,7 @@ import { Button, Text, Input, Loader } from "../../components";
 import { useNavigate } from "react-router-dom";
 import { SnackBarContext, UserContext } from "../../context";
 import { HiHome } from "react-icons/hi";
+import { API_URL } from "../../constants";
 
 import "./session.css";
 
@@ -23,17 +24,12 @@ const Session: React.FC<{ loading: boolean }> = ({ loading }) => {
     e.preventDefault();
 
     const user = await (
-      await fetch(
-        `https://mature-halibut-neatly.ngrok-free.app/user/${
-          isLogin ? "signin" : "register"
-        }`,
-        {
-          method: "POST",
-          credentials: "include",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ username, password }),
-        }
-      )
+      await fetch(`${API_URL}user/${isLogin ? "signin" : "register"}`, {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      })
     ).json();
 
     if (user.error) {
