@@ -14,7 +14,7 @@
    - VITE_NGROK_URL: You should find this in your enviroments variables in beer-app-server project.
 4. Run `npm run dev` and by default your client should be [here](https://localhost:5173/).
 
-**NOTE:**Remember after these steps if you want to shut down and up again the client justo do step 4 again.
+**NOTE:** Remember after these steps if you want to shut down and up again the client justo do step 4 again.
  
 ---
 
